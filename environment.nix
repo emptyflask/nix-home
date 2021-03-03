@@ -10,6 +10,6 @@
     LESS     = "-F -R -M -i";
     LESSOPEN = "| ${pkgs.sourceHighlight}/bin/src-hilite-lesspipe.sh %s";
     MANPAGER = "nvim -c 'set ft=man' -";
-    PAGER    = "less";
+    PAGER    = "${pkgs.less}/bin/less";
   };
 }
