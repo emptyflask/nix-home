@@ -1,10 +1,18 @@
-{pkgs, ...}:
+{pkgs, chruby ? false, ...}:
 
 let
   lscolors = builtins.fetchGit {
     url = "https://github.com/trapd00r/LS_COLORS.git";
     ref = "master";
   };
+
+  source_chruby =
+    if chruby
+    then ''
+      source ${pkgs.chruby}/share/chruby/chruby.sh
+      source ${pkgs.chruby}/share/chruby/auto.sh
+    ''
+    else "";
 
 in
 {
@@ -15,7 +23,7 @@ in
     defaultKeymap = "viins";
     history.extended = true;
 
-    initExtra = (builtins.readFile ./zshrc) + ''
+    initExtra = (builtins.readFile ./zshrc) + source_chruby + ''
       source ${pkgs.nix-index}/etc/profile.d/command-not-found.sh
       eval "$(${pkgs.fasd}/bin/fasd --init auto)"
       eval $(${pkgs.coreutils}/bin/dircolors -b ${lscolors}/LS_COLORS)
@@ -29,7 +37,6 @@ in
       duh   = "du -csh";
       tailf = "tail -f";
 
-      ag   = ''ag --color-line-number=1\;30 --color-path=1\;32 --color-match=0\;31'';
       grep = "grep --color=auto";
 
       bi  = "bundle install";
@@ -54,8 +61,7 @@ in
 
       j = "jira ls -a emptyflask";
 
-      # may break on MacOS
-      open = "xdg-open";
+      open = "${pkgs.xdg-utils}/bin/xdg-open";
     };
 
     sessionVariables = {

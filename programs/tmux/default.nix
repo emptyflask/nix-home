@@ -6,6 +6,8 @@
     shortcut = "Space";
     baseIndex = 1;
 
+    secureSocket = false;
+
     sensibleOnTop = true;
     plugins = with pkgs.tmuxPlugins; [
       sensible
@@ -14,6 +16,8 @@
       copycat
       open
     ];
+
+    # tmuxinator.enable = true;
 
     extraConfig = ''
       # reload tmux.conf
@@ -33,7 +37,10 @@
       bind-key -T copy-mode MouseDragEnd1Pane send -X copy-pipe-and-cancel "reattach-to-user-namespace pbcopy" 
 
       # Scrolling works as expected
-      set -g terminal-overrides 'xterm*:smcup@:rmcup@'
+      # set -g terminal-overrides 'xterm*:smcup@:rmcup@'
+
+      # set -g default-terminal "xterm-256color"
+      set -ga terminal-overrides ",*256col*:Tc"
 
       set -g status-position top
       set -g status-interval 1
@@ -48,11 +55,11 @@
       set -g window-status-format "#[fg=colour244,bg=colour234]#I #[fg=colour240] #[default]#W "
       set -g window-status-current-format "#[fg=colour234,bg=colour31]#[fg=colour117,bg=colour31] #I  #[fg=colour231,bold]#W #[fg=colour31,bg=colour234,nobold]"
 
-      set-window-option -g window-status-fg colour249
-      set-window-option -g window-status-activity-attr none
-      set-window-option -g window-status-bell-attr none
-      set-window-option -g window-status-activity-fg yellow
-      set-window-option -g window-status-bell-fg red
+      # set-window-option -g window-status-style fg=colour249
+      # set-window-option -g window-status-activity-attr none
+      # set-window-option -g window-status-bell-attr none
+      # set-window-option -g window-status-activity-fg yellow
+      # set-window-option -g window-status-bell-fg red
 
       # Smart pane switching with awareness of vim splits
       is_vim='echo "#{pane_current_command}" | grep -iqE "(^|\/)g?(view|n?vim?)(diff)?$"'
@@ -90,6 +97,9 @@
 
       # Send the same input to all panes
       bind-key a set-window-option synchronize-panes
+
+      # Without this, key codes from iTerm2 get mixed up
+      set -g assume-paste-time 0
     '';
   };
 }

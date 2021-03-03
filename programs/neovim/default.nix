@@ -1,7 +1,4 @@
 {pkgs, ...}:
-# let
-#   pkgs = import <nixos-unstable> {};
-# in
 
 with pkgs;
 
