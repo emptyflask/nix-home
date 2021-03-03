@@ -7,10 +7,10 @@ let
   };
 
   source_chruby =
-    if chruby
+    if builtins.isAttrs chruby
     then ''
-      source ${pkgs.chruby}/share/chruby/chruby.sh
-      source ${pkgs.chruby}/share/chruby/auto.sh
+      source ${chruby}/share/chruby/chruby.sh
+      source ${chruby}/share/chruby/auto.sh
     ''
     else "";
 
@@ -61,7 +61,7 @@ in
 
       j = "jira ls -a emptyflask";
 
-      open = "${pkgs.xdg-utils}/bin/xdg-open";
+      open = "xdg-open";
     };
 
     sessionVariables = {

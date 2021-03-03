@@ -54,50 +54,27 @@ with pkgs;
 
     # ghcide-nix.ghcide-ghc865
 
-    bat                 # cat clone with syntax highlighting and git integration
-    bc                  # cli calculator
     bmon                # network monitor
     dmenu               # minimal desktop menu
     dropbox
     unstable.exodus     # crypto wallet
-    fd                  # find entries in filesystem
-    fortune
     gnome3.cheese       # webcam photos
     # gnome3.gnome-calendar
     # gnome3.gnome-control-center
     google-chrome
-    htop
     jmtpfs              # Media Transfer Protocol (usb device filesystems)
     unstable.joplin-desktop # notes
-    jq
     keybase
     keybase-gui
-    killall
     kitty               # terminal
-    # libnotify
-    # libXScrnSaver
     libreoffice
     lxmenu-data         # installed apps
-    magic-wormhole      # simple secure file transfer
-    mosh                # ssh alternative
-    nix-index
-    nix-prefetch-git
-    nix-zsh-completions
-    nixops
     pavucontrol
-    # pcmanfm-qt          # GUI file manager
     qalculate-gtk       # calculator
-    unstable.pandoc     # document converter
     qemu
-    ranger              # CLI file manager
-    ripgrep
     scowl               # spellchecker / dictionary
-    shared_mime_info    # recognize file types
     st
-    tmux
-    translate-shell
-    units
-    xarchiver
+    unstable.xdg-utils
     xfce.thunar
     yubioath-desktop
     yubikey-personalization
@@ -115,7 +92,6 @@ with pkgs;
     ffmpegthumbnailer
     flameshot           # screenshots (PrtSc)
     gimp-with-plugins
-    imagemagick
     krita
     meshlab
     scribusUnstable     # page layout
@@ -125,65 +101,24 @@ with pkgs;
     aws-sam-cli         # AWS serverless app model
     dbeaver             # DB GUI
     docker-compose
-    exercism
-    foreman
     gcc
-    gnumake
-    html-tidy           # format html
     ltrace              # lib trace
-    niv                 # nix channel config
-    sourceHighlight
-    shellcheck          # shell script analyzer
     strace              # system call trace
-    tig                 # git tui frontend
-    universal-ctags
     unstable.vscode
     unstable.nixfmt     # format nix
     unstable.uncrustify # format c/c++/c#/java/etc
 
-    # programming - elixir / erlang
-    elixir
-
-    # programming - javascript
-    nodejs
-    yarn
-
     # programming - haskell
-    ghc
-    cabal2nix
-    cabal-install
-    haskellPackages.apply-refact
-    haskellPackages.ghcid
-    haskellPackages.haskell-language-server
-    haskellPackages.hlint
-    haskellPackages.yesod
     unstable.haskellPackages.stylish-haskell
     unstable.haskellPackages.xmobar
     unstable.ormolu
     unstable.stack
 
-    # programming - python
-    python3Packages.pynvim # for neovim
-
-    # programming - ruby
-    bundix
-    jekyll
-    ruby_2_7
-    rubyPackages_2_7.pry
-
-    # programming - rust
-    cargo
-    rustc
-    rustfmt
-
     # chat / email
     unstable.discord
-    neomutt             # CLI mail
-    protonmail-bridge
     signal-desktop
     slack
     thunderbird-bin
-    weechat
     unstable.zoom-us
 
     # fonts (format with !column -t)
@@ -203,7 +138,6 @@ with pkgs;
     handbrake           # dvd ripper
     mplayer
     mpv
-    ncmpcpp
     spotify
     vlc
   ];

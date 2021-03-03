@@ -1,4 +1,4 @@
-{ config, pkgs, lib, ... }:
+args@{ config, pkgs, lib, ... }:
 
 {
   nixpkgs.config.allowUnfree = true;
@@ -35,6 +35,7 @@
   };
 
   imports = [
+    ./common.nix
     ./macos.nix
     ./environment.nix
     ./accounts
@@ -44,7 +45,7 @@
     ./programs/neovim
     ./programs/tmux
     ./programs/vim
-    (import ./programs/zsh {pkgs = pkgs; chruby = true;})
+    (import ./programs/zsh (args // {chruby = pkgs.chruby;}))
   ];
 
 }

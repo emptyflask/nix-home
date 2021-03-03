@@ -1,4 +1,4 @@
-{ config, pkgs, lib, ... }:
+args@{ config, pkgs, lib, ... }:
 
 {
 
@@ -45,6 +45,7 @@
   };
 
   imports = [
+    ./common.nix
     ./linux.nix
     ./environment.nix
     ./accounts
@@ -61,7 +62,7 @@
     ./programs/tmux
     ./programs/vim
     ./programs/zathura
-    ./programs/zsh
+    (import ./programs/zsh args)
     ./xresources
   ];
 }
