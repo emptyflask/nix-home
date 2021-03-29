@@ -45,7 +45,7 @@ in
       trs = "touch tmp/restart.txt";
 
       # pngcrush with default settings
-      crush = "pngcrush -d crushed -rem gAMA -rem cHRM -rem iCCP -rem sRGB";
+      crush = "${pkgs.pngcrush}/bin/pngcrush -d crushed -rem gAMA -rem cHRM -rem iCCP -rem sRGB";
 
       curl_json = ''curl -v -H "Content-Type: application/json"'';
 
