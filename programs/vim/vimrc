@@ -72,7 +72,7 @@ set autoread
 " normally displayed i.e. whitespace, tabs, EOL
 set listchars=trail:·,tab:‣\ 
 set nolist
-nmap <silent> <leader>s :set nolist!<CR>
+nmap <silent> <leader>S :set nolist!<CR>
 
 " Spaces, not tabs
 set softtabstop=2
@@ -107,6 +107,9 @@ map <leader>f :Files<cr>
 " Open files, limited to the directory of the current file, with <leader>gf
 " This requires the %% mapping in .vimrc
 map <leader>gf :Files %%<cr>
+
+" Search modified files in git repo
+map <leader>d :GFiles?<cr>
 
 " Open a buffer
 map <leader>b :Buffers<cr>

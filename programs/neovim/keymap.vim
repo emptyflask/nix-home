@@ -16,6 +16,9 @@ map <leader>f :Files<cr>
 " This requires the %% mapping in .vimrc
 map <leader>gf :Files %%<cr>
 
+" Search modified files in git repo
+map <leader>d :GFiles?<cr>
+
 " Open a buffer
 map <leader>b :Buffers<cr>
 
