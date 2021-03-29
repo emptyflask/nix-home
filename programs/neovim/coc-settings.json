@@ -28,5 +28,6 @@
   },
   "codeLens.enable": true,
   "solargraph.checkGemVersion": false,
+  "solargraph.diagnostics": true,
   "solargraph.promptDownload": false
 }
