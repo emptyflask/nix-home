@@ -7,7 +7,7 @@ in
 with pkgs;
 {
   services.polybar = {
-    enable = true;
+    enable = false;
     package = unstable.polybar.override {
       alsaSupport = true;
       githubSupport = true;

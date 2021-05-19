@@ -14,10 +14,10 @@
     userName = "Jon Roberts";
     userEmail = "jon@emptyflask.net";
 
-    signing = {
-      key = "6A4334234032977E";
-      signByDefault = true;
-    };
+    # signing = {
+    #   key = "6A4334234032977E";
+    #   signByDefault = true;
+    # };
 
     aliases = {
       aliases = "!git config --get-regexp 'alias.*' | colrm 1 6 | sed 's/[ ]/ = /' | sort";
