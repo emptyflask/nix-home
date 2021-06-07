@@ -1,12 +1,16 @@
 {pkgs, ...}:
 
+let
+  unstable = import <nixos-unstable> {};
+in
+
 with pkgs;
 
 {
   programs.neovim = {
     enable    = true;
-    # package   = neovim-unwrapped;
-    package   = neovim-nightly;
+    package   = neovim-unwrapped;
+    # package   = neovim-nightly;
 
     viAlias   = true;
     vimAlias  = false;
@@ -65,7 +69,6 @@ with pkgs;
       vim-polyglot  # syntax highlighting for most languages
       vim-sandwich
       vim-snippets
-      vim-speeddating
       vim-startify
       vim-stylish-haskell
       vim-test
@@ -73,10 +76,15 @@ with pkgs;
       vim-unimpaired
       vimproc
       vimwiki
+
+      unstable.vimPlugins.nvim-compe
+      unstable.vimPlugins.nvim-treesitter
+      unstable.vimPlugins.nvim-lspconfig
     ];
 
   };
 
   xdg.configFile."nvim/coc-settings.json".source = ./coc-settings.json;
   xdg.configFile."nvim/ftplugin/ruby.vim".source = ./ftplugin/ruby.vim;
+  xdg.configFile."nvim/after/plugin/tabular.vim".source = ./after/plugin/tabular.vim;
 }
