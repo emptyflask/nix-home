@@ -47,6 +47,10 @@ with pkgs;
 
     # programming - javascript
     nodejs
+    nodePackages.diagnostic-languageserver
+    nodePackages.eslint_d
+    nodePackages.typescript
+    nodePackages.typescript-language-server
     yarn
 
     # programming - haskell
