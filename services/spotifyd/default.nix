@@ -5,11 +5,10 @@ with pkgs;
     enable = true;
     settings = {
       global = {
-        user         = "emptyflask";
+        username     = "emptyflask";
         password_cmd = "${pkgs.pass}/bin/pass spotify";
         device_name  = "nixos-spotifyd";
-        bitrate      = "320";
-        device_type  = "computer";
+        bitrate      = 320;
         backend      = "alsa";
         cache_patch  = "/tmp/spotifyd";
       };
