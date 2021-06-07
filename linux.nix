@@ -9,12 +9,8 @@ let
   myLocation = "home";
   locations = {
     home = {
-      lat = 30.2772;
-      long = -97.7357;
-    };
-    sxsw = {
-      lat = 30.2770;
-      long = -97.7432;
+      lat = 44.9466;
+      long = -93.1517;
     };
   };
 
@@ -118,7 +114,7 @@ with pkgs;
     unstable.discord
     signal-desktop
     slack
-    thunderbird-bin
+    unstable.thunderbird-bin
     unstable.zoom-us
 
     # fonts (format with !column -t)
@@ -139,10 +135,14 @@ with pkgs;
     mplayer
     mpv
     spotify
-    vlc
+    unstable.vlc
   ];
 
+  dconf.enable = false;
+
   services = {
+    blueman-applet.enable = true;
+
     picom = {
       enable       = true;
       fade         = true;
@@ -176,8 +176,16 @@ with pkgs;
       tray      = true;
     };
 
-    xscreensaver = {
+    screen-locker = {
       enable = true;
+      inactiveInterval = 15;
+      # lockCmd = ''${pkgs.betterlockscreen}/bin/betterlockscreen -u ${background} -l dimblur'';
+      # lockCmd = "${pkgs.i3lock-pixeled}/bin/i3lock-pixeled";
+      lockCmd = "${pkgs.i3lock-fancy-rapid}/bin/i3lock-fancy-rapid 8 pixel";
+    };
+
+    xscreensaver = {
+      enable = false;
       settings = {
         lock = true;
       };
@@ -202,12 +210,6 @@ with pkgs;
       ${pkgs.networkmanagerapplet}/bin/nm-applet &
 
       ${pkgs.alsaUtils}/bin/amixer -c0 set Headphone 100%,100%
-
-      ${pkgs.xidlehook}/bin/xidlehook \
-        --not-when-fullscreen \
-        --not-when-audio \
-        --timer primary 600 '${pkgs.i3lock-pixeled}/bin/i3lock-pixeled' \
-        --timer normal 3600 'systemctl suspend'
     '';
 
     windowManager.xmonad = rec {
