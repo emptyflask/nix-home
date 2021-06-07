@@ -1,5 +1,5 @@
 set pastetoggle=<f3>
-nmap <tab> i<tab>
+" nmap <tab> i<tab>
 
 " Insert blank line
 nmap <Enter> o<ESC>
