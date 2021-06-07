@@ -98,8 +98,8 @@ args@{ config, pkgs, lib, ... }:
     ./environment.nix
     ./accounts
     ./services/dunst
-    ./services/stalonetray
     ./services/spotifyd
+    ./services/trayer
     ./programs/alacritty
     ./programs/git
     ./programs/kitty
