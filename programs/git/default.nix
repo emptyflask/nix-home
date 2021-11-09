@@ -20,31 +20,31 @@
     # };
 
     aliases = {
-      aliases        = "!git config --get-regexp 'alias.*' | colrm 1 6 | sed 's/[ ]/ = /' | sort";
-      st             = "status";
-      ci             = "commit";
-      co             = "checkout";
-      br             = "branch";
-      di             = "diff";
-      dc             = "diff --cached";
-      cp             = "cherry-pick";
-      amend          = "commit --amend";
-      undo           = "reset --soft HEAD^";
-      oneline        = "log --pretty=oneline";
-      staged         = "diff --cached";
-      unstaged       = "diff";
-      recent         = "log --pretty=format:'%Cred%h %Creset- %Cgreen%an (%cd)%Creset: %s' --since='2 weeks ago' --date=short --author=Jon --all";
-      tree           = "log --graph --pretty=oneline --abbrev-commit";
-      ignore         = "update-index --assume-unchanged";
-      parent         = "name-rev --refs='refs/remotes/*' HEAD";
-      l              = "log --graph --abbrev-commit --date=relative --pretty=format:'%C(yellow)%h%Creset -%C(auto)%d%Creset %s %Cgreen(%ar) %C(bold blue)<%an>%Creset'";
-      la             = "!git l --all";
-      head           = "!git l -1";
-      h              = "!git head";
-      r              = "!git l -30";
-      ra             = "!git r --all";
-      merged         = ''!git branch --merged | egrep -v \"\\*|^\\s+develop$|^\\s+master$\"'';
-      merged-cleanup = "!git merged | xargs -n 1 git branch -d";
+      aliases         = "!git config --get-regexp 'alias.*' | colrm 1 6 | sed 's/[ ]/ = /' | sort";
+      st              = "status";
+      ci              = "commit";
+      co              = "checkout";
+      br              = "branch";
+      di              = "diff";
+      dc              = "diff --cached";
+      cp              = "cherry-pick";
+      amend           = "commit --amend";
+      undo            = "reset --soft HEAD^";
+      oneline         = "log --pretty=oneline";
+      staged          = "diff --cached";
+      unstaged        = "diff";
+      recent          = "log --pretty=format:'%Cred%h %Creset- %Cgreen%an (%cd)%Creset: %s' --since='2 weeks ago' --date=short --author=Jon --all";
+      tree            = "log --graph --pretty=oneline --abbrev-commit";
+      ignore          = "update-index --assume-unchanged";
+      parent          = "name-rev --refs='refs/remotes/*' HEAD";
+      l               = "log --graph --abbrev-commit --date=relative --pretty=format:'%C(yellow)%h%Creset -%C(auto)%d%Creset %s %Cgreen(%ar) %C(bold blue)<%an>%Creset'";
+      la              = "!git l --all";
+      head            = "!git l -1";
+      h               = "!git head";
+      r               = "!git l -30";
+      ra              = "!git r --all";
+      delete-merged   = ''!git branch --merged | egrep -v "\*|^\s+develop$|^\s+master$" | xargs -n 1 git branch -d'';
+      delete-squashed = ''!git checkout -q master && git for-each-ref refs/heads/ "--format=%(refname:short)" | while read branch; do mergeBase=$(git merge-base master $branch) && [[ $(git cherry master $(git commit-tree $(git rev-parse $branch\^{tree}) -p $mergeBase -m _)) == "-"* ]] && git branch -D $branch; done'';
     };
 
     # Large File Storage
@@ -64,7 +64,16 @@
         attributesFile = "~/.git/gitattributes";
       };
 
-      diff.tool                   = "nvim";
+      diff.tool       = "nvim";
+      "diff \"hex\""  = {
+        textconv      = "${pkgs.util-linux}/bin/hexdump -v -C";
+        binary        = true;
+      };
+      "diff \"jpg\""  = {
+        textconv      = "${pkgs.exif}/bin/exif";
+        cachetextconv = true;
+      };
+
       merge.tool                  = "nvim";
       merge.conflictstyle         = "diff3";
       "mergetool \"nvim\"".cmd    = ''nvim -f -c "Gdiffsplit!" "$MERGED"'';

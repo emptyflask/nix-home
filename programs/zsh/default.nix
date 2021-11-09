@@ -97,7 +97,7 @@ in
       {
         name = "fast-syntax-highlighting";
         src = builtins.fetchGit {
-          url = "https://github.com/zdharma/fast-syntax-highlighting.git";
+          url = "https://github.com/zdharma-continuum/fast-syntax-highlighting.git";
           ref = "refs/tags/v1.55";
         };
       }

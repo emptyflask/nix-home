@@ -1,4 +1,4 @@
-setopt extendedglob
+# setopt extendedglob
 unsetopt correct
 
 bindkey "^[[1~" beginning-of-line

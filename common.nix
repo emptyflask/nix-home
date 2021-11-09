@@ -17,7 +17,6 @@ with pkgs;
     nix-index
     nix-prefetch-git
     nix-zsh-completions
-    nixops
     pandoc              # document converter
     ranger              # CLI file manager
     ripgrep
@@ -69,8 +68,8 @@ with pkgs;
     # programming - ruby
     bundix
     jekyll
-    ruby_2_7
-    rubyPackages_2_7.pry
+    ruby_3_0
+    rubyPackages_3_0.pry
 
     # programming - rust
     cargo

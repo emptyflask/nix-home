@@ -87,3 +87,5 @@ filetype plugin indent on
 
 " Highlight yanked text (wait until neovim 0.5)
 " vim augroup highlight_yank autocmd! autocmd TextYankPost * silent! lua require'vim.highlight'.on_yank("IncSearch", 1000) augroup END
+
+set completeopt=menu,menuone,noselect

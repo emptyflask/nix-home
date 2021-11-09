@@ -50,7 +50,10 @@ with pkgs;
 
     # ghcide-nix.ghcide-ghc865
 
+    # unstable._1password
+    # unstable._1password-gui
     bmon                # network monitor
+    unstable.burpsuite  # network security tool
     dmenu               # minimal desktop menu
     dropbox
     unstable.exodus     # crypto wallet
@@ -70,7 +73,9 @@ with pkgs;
     qemu
     scowl               # spellchecker / dictionary
     st
+    unstable.terraform
     unstable.xdg-utils
+    whois
     xfce.thunar
     yubioath-desktop
     yubikey-personalization
@@ -112,7 +117,7 @@ with pkgs;
 
     # chat / email
     unstable.discord
-    signal-desktop
+    unstable.signal-desktop
     slack
     unstable.thunderbird-bin
     unstable.zoom-us
@@ -177,7 +182,7 @@ with pkgs;
     };
 
     screen-locker = {
-      enable = true;
+      enable = false;
       inactiveInterval = 15;
       # lockCmd = ''${pkgs.betterlockscreen}/bin/betterlockscreen -u ${background} -l dimblur'';
       # lockCmd = "${pkgs.i3lock-pixeled}/bin/i3lock-pixeled";
@@ -185,7 +190,7 @@ with pkgs;
     };
 
     xscreensaver = {
-      enable = false;
+      enable = true;
       settings = {
         lock = true;
       };

@@ -9,7 +9,7 @@
     EDITOR   = "nvim";
     LESS     = "-F -R -M -i";
     LESSOPEN = "| ${pkgs.sourceHighlight}/bin/src-hilite-lesspipe.sh %s";
-    MANPAGER = "nvim -c 'set ft=man' -";
+    MANPAGER = "${pkgs.neovim}/bin/nvim +Man!";
     PAGER    = "${pkgs.less}/bin/less";
   };
 }

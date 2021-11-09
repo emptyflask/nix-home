@@ -25,3 +25,5 @@
 *.rb    diff=ruby
 *.rake  diff=ruby
 *.rs    diff=rust
+*.bin binary diff=hex
+*.jar   diff=hex
