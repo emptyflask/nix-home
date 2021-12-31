@@ -1,12 +1,15 @@
 { config, lib, pkgs, ... }:
 
 {
+  xdg.configFile."kitty/scrollback.sh".source = ./scrollback.sh;
+
   programs.kitty = {
     enable = true;
 
     keybindings = {
       "ctrl+shift+n" = "new_os_window_with_cwd";
       "ctrl+shift+t" = "new_tab_with_cwd !neighbor";
+      "ctrl+shift+y" = "detach_tab";
     };
 
     settings = {
@@ -17,7 +20,9 @@
 
       background_opacity = "0.9";
       scrollback_lines   = 10000;
-      scrollback_pager   = ''nvim -c 'setlocal ft=man nonumber nolist showtabline=0 foldcolumn=0' -c "autocmd VimEnter * normal G" -'';
+      # scrollback_pager   = ''nvim -u NONE -c 'setlocal ft=man nonumber nolist showtabline=0 foldcolumn=0' -c "autocmd VimEnter * normal G" -'';
+      scrollback_pager   = "~/.config/kitty/scrollback.sh 'INPUT_LINE_NUMBER' 'CURSOR_LINE' 'CURSOR_COLUMN'";
+
       enable_audio_bell  = false;
 
       pointer_shape_when_grabbed = "beam";
