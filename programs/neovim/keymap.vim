@@ -28,6 +28,12 @@ map <leader>/ :Lines<cr>
 " Word completion
 inoremap <expr> <c-x><c-k> fzf#vim#complete('cat ' . g:dictionary)
 
+" nnoremap <leader>f  <cmd>lua require('telescope.builtin').find_files()<cr>
+" nnoremap <leader>a  <cmd>lua require('telescope.builtin').live_grep()<cr>
+" nnoremap <leader>b  <cmd>lua require('telescope.builtin').buffers()<cr>
+" nnoremap <leader>gh <cmd>lua require('telescope.builtin').help_tags()<cr>
+" nnoremap <leader>gf <cmd>lua require('telescope.builtin').find_files( { cwd = vim.fn.expand('%:p:h') })
+
 " ------------------------------------
 
 " Edit or view files in same directory as current file

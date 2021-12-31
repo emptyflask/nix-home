@@ -2,6 +2,10 @@
 local cmp = require'cmp'
 
 cmp.setup({
+  experimental = {
+    native_menu = true
+  },
+
   snippet = {
     -- REQUIRED - you must specify a snippet engine
     expand = function(args)
@@ -11,6 +15,7 @@ cmp.setup({
       -- require'snippy'.expand_snippet(args.body) -- For `snippy` users.
     end,
   },
+
   mapping = {
     ['<C-d>'] = cmp.mapping(cmp.mapping.scroll_docs(-4), { 'i', 'c' }),
     ['<C-f>'] = cmp.mapping(cmp.mapping.scroll_docs(4), { 'i', 'c' }),
@@ -22,6 +27,7 @@ cmp.setup({
     }),
     ['<CR>'] = cmp.mapping.confirm({ select = true }),
   },
+
   sources = cmp.config.sources({
     { name = 'nvim_lsp' },
     { name = 'vsnip' }, -- For vsnip users.

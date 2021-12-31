@@ -23,6 +23,8 @@ set wildignore=*.gif,*.jpg,*.png,*.o,*.obj,.git,.svn,tmp
 
 " Unfold by default
 set foldlevel=10
+set foldmethod=expr
+set foldexpr=nvim_treesitter#foldexpr()
 
 let mapleader=","
 set clipboard^=unnamedplus
