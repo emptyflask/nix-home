@@ -1,4 +1,8 @@
 { config, lib, pkgs, ... }:
+
+let
+  unstable = import <nixos-unstable> {};
+in
 {
   xdg.configFile."git/gitattributes".source = ./gitattributes;
   xdg.configFile."git/ignore".source = ./ignore;
@@ -51,32 +55,56 @@
     lfs.enable = true;
 
     extraConfig = {
+      color = {
+        ui = "true";
 
-      color.ui = "auto";
-      "color \"branch\"" = {
-        current = "yellow reverse";
-        local   = "yellow";
-        remote  = "green";
+        branch = {
+          current = "yellow reverse";
+          local   = "yellow";
+          remote  = "green";
+        };
       };
 
       core = {
-        editor = "nvim";
+        editor         = "nvim";
         attributesFile = "~/.git/gitattributes";
+        pager          =  "${unstable.delta}/bin/delta";
       };
 
-      diff.tool       = "nvim";
-      "diff \"hex\""  = {
-        textconv      = "${pkgs.util-linux}/bin/hexdump -v -C";
-        binary        = true;
-      };
-      "diff \"jpg\""  = {
-        textconv      = "${pkgs.exif}/bin/exif";
-        cachetextconv = true;
+      delta = {
+        navigate = true;
+        # features = "collared-trogon";
+        line-numbers = true;
+        syntax-theme = "gruvbox-dark";
+        blame-palette = "#1d2021 #282828 #3c3836";
       };
 
-      merge.tool                  = "nvim";
-      merge.conflictstyle         = "diff3";
-      "mergetool \"nvim\"".cmd    = ''nvim -f -c "Gdiffsplit!" "$MERGED"'';
+      diff = {
+        colorMoved = "default";
+        tool       = "nvim";
+        hex  = {
+          textconv      = "${pkgs.util-linux}/bin/hexdump -v -C";
+          binary        = true;
+        };
+        jpg  = {
+          textconv      = "${pkgs.exif}/bin/exif";
+          cachetextconv = true;
+        };
+      };
+
+      # Delta themes
+      include.path = "${./themes.gitconfig}";
+
+      interactive = {
+        diffFilter = "${unstable.delta}/bin/delta --color-only";
+      };
+
+      merge = {
+        tool                  = "nvim";
+        conflictstyle         = "diff3";
+      };
+
+      mergetool.nvim.cmd    = ''nvim -f -c "Gdiffsplit!" "$MERGED"'';
 
       credential.helper = "${pkgs.gitAndTools.pass-git-helper}/bin/pass-git-helper";
       github.user       = "emptyflask";
