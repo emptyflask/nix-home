@@ -2,11 +2,9 @@
 
 with pkgs;
 {
-  imports = [ ./trayer.nix ];
-
   services.trayer = {
     enable = true;
-    config = {
+    settings = {
       align       = "right";
       alpha       = 64;
       distance    = 2;
