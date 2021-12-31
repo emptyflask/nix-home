@@ -124,13 +124,14 @@ with pkgs;
     # fonts (format with !column -t)
     aileron            comfortaa              dejavu_fonts
     eunomia            f5_6                   fantasque-sans-mono      ferrum
-    fira               fira-code              fira-code-symbols        fira-mono
+    fira               fira-code-symbols      fira-mono
     font-awesome       helvetica-neue-lt-std  hermit                   ibm-plex
     inconsolata        iosevka                league-of-moveable-type  liberation_ttf
     libre-baskerville  libre-bodoni           libre-caslon             libre-franklin
     medio              mplus-outline-fonts    national-park-typeface   norwester-font
     penna              route159               seshat
     tenderness         vegur                  vistafonts
+    (nerdfonts.override { fonts = [ "FiraCode" "DroidSansMono" ]; })
 
     # media
     calibre             # e-book library

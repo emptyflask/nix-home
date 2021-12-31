@@ -10,7 +10,7 @@
     };
 
     settings = {
-      font_family        = "Fira Code Regular";
+      font_family        = "Fira Code";
       bold_font          = "Fira Code Bold";
       italic_font        = "Fira Mono Regular Italic";
       bold_italic_font   = "Fira Mono Bold Italic";
