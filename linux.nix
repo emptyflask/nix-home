@@ -111,7 +111,6 @@ with pkgs;
 
     # programming - haskell
     unstable.haskellPackages.stylish-haskell
-    unstable.haskellPackages.xmobar
     unstable.ormolu
     unstable.stack
 
@@ -207,6 +206,8 @@ with pkgs;
     userDirs.enable = true;
   };
 
+  xdg.configFile."xmobar/xmobarrc".source = ./xmonad/xmobarrc;
+
   xsession = {
     enable = true;
     initExtra = ''
@@ -217,16 +218,7 @@ with pkgs;
       ${pkgs.alsaUtils}/bin/amixer -c0 set Headphone 100%,100%
     '';
 
-    windowManager.xmonad = rec {
-      enable = true;
-      enableContribAndExtras = true;
-      extraPackages = hp: [
-        hp.dbus
-        hp.monad-logger
-        hp.xmonad-contrib
-        # hp.xmobar
-      ];
-    };
+    windowManager = import ./xmonad/default.nix pkgs;
 
     pointerCursor = {
       package = pkgs.gnome3.gnome-themes-standard;
