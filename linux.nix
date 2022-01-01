@@ -207,8 +207,6 @@ with pkgs;
     userDirs.enable = true;
   };
 
-  xdg.configFile."xmobar/xmobarrc".source = ./xmonad/xmobarrc;
-
   xsession = {
     enable = true;
     initExtra = ''
@@ -229,4 +227,7 @@ with pkgs;
     };
   };
 
+  imports = [
+    ./xmobar
+  ];
 }
