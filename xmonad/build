@@ -1,0 +1,6 @@
+#!/bin/sh
+
+set -e
+
+make
+cp result/bin/xmonad-x86_64-linux "$1"
