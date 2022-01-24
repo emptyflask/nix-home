@@ -28,12 +28,13 @@ import           Graphics.X11.ExtraTypes.XF86
 import           System.Exit
 
 import           Managers                           (scratchpads)
+import qualified Paths
 
 -- Keyboard --
 myKeys :: XConfig Layout -> M.Map (KeyMask, KeySym) (X ())
 myKeys conf@ XConfig {XMonad.modMask = modm} = M.fromList $
     -- launching and killing programs
-    [ ((modm,                     xK_Return   ), spawn "kitty")
+    [ ((modm,                     xK_Return   ), spawn Paths.kitty)
     , ((modm .|. alt,             xK_Return   ), spawn "urxvt")
     , ((modm,                     xK_f        ), spawn "thunar")
     , ((modm .|. shift,           xK_c        ), kill)

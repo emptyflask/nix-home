@@ -1,0 +1,25 @@
+cradle:
+  cabal:
+    - path: "lib/xmonad.hs"
+      component: "xmonad-config:exe:xmonad-x86_64-linux"
+
+    - path: "lib/Workspaces.hs"
+      component: "xmonad-config:exe:xmonad-x86_64-linux"
+
+    - path: "lib/Keys.hs"
+      component: "xmonad-config:exe:xmonad-x86_64-linux"
+
+    - path: "lib/Logging.hs"
+      component: "xmonad-config:exe:xmonad-x86_64-linux"
+
+    - path: "lib/Layout.hs"
+      component: "xmonad-config:exe:xmonad-x86_64-linux"
+
+    - path: "lib/Managers.hs"
+      component: "xmonad-config:exe:xmonad-x86_64-linux"
+
+    - path: "lib/Colors.hs"
+      component: "xmonad-config:exe:xmonad-x86_64-linux"
+
+    - path: "lib/Paths.hs"
+      component: "xmonad-config:exe:xmonad-x86_64-linux"

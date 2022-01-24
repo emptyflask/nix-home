@@ -82,8 +82,7 @@ with pkgs;
     zeal                # docs (like dash)
 
     # games
-    unstable.steam
-    unstable.steam-run
+    # steam-run
     # unstable.unityhub
 
     # graphics / print

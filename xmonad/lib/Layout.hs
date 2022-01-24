@@ -16,24 +16,23 @@ import           XMonad.Layout.Spacing
 import           XMonad.Layout.Tabbed
 import           XMonad.Layout.ThreeColumns
 
-import qualified Colors                             as C
+import qualified Colors
 
 myLayoutHook = showWName $ tallLeft ||| tallRight ||| full ||| threeCol ||| bsp ||| tab ||| one
   where
-    tallLeft   = named "[]="   rt
-    tallRight  = named "=[]"   $ reflectHoriz rt
+    tallLeft   = named "[]="   $ withBorders $ ResizableTall nmaster delta (144/233) []
+    tallRight  = named "=[]"   $ reflectHoriz tallLeft
     full       = named "[ ]"   $ noBorders Full
     one        = named " o "   $ Column 1.6
-    threeCol   = named "|||"   $ withBorders $ ThreeColMid 1 delta (1/2)
+    threeCol   = named "|||"   $ withBorders $ ThreeColMid nmaster delta (1/2)
     bsp        = named "BSP"   $ withBorders $ borderResize emptyBSP
 
-    rt = withBorders $ ResizableTall 1 delta goldenRatio []
-    delta = 3/100
-    goldenRatio = 0.618033
-    withBorders = smartBorders . defaultSpacing 20
+    nmaster          = 1       -- Default number of windows in the master pane
+    delta            = 3/100   -- Percent of screen to increment by when resizing panes
+    withBorders      = smartBorders . defaultSpacing 20
     defaultSpacing i = spacingRaw True (uniformBorder i) True (uniformBorder i) True
-    uniformBorder i = Border i i i i
-    named t = renamed [Replace t]
+    uniformBorder i  = Border i i i i
+    named t          = renamed [Replace t]
 
     -- normal horizontal tile
     -- mtile   = named "M[]="  $ smartBorders $ Mirror rt
@@ -57,17 +56,17 @@ myLayoutHook = showWName $ tallLeft ||| tallRight ||| full ||| threeCol ||| bsp 
     --                                       (Role "gimp-toolbox")
 
 tabTheme = def
-    { activeColor           = C.bg4
-    , activeBorderColor     = C.bg0
-    , activeTextColor       = C.fg0
+    { activeColor           = Colors.bg4
+    , activeBorderColor     = Colors.bg0
+    , activeTextColor       = Colors.fg0
 
-    , inactiveColor         = C.bg1
-    , inactiveBorderColor   = C.bg0
-    , inactiveTextColor     = C.fg1
+    , inactiveColor         = Colors.bg1
+    , inactiveBorderColor   = Colors.bg0
+    , inactiveTextColor     = Colors.fg1
 
-    , urgentColor           = C.red
-    , urgentBorderColor     = C.bg1
-    , urgentTextColor       = C.bg0
+    , urgentColor           = Colors.red
+    , urgentBorderColor     = Colors.bg1
+    , urgentTextColor       = Colors.bg0
 
     , decoHeight            = 22
     , fontName              = "xft:Liberation Sans:size=10"

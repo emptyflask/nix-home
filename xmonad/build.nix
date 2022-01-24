@@ -2,10 +2,10 @@
 , xmonad-contrib
 }:
 mkDerivation {
-  pname = "my-xmonad";
+  pname = "xmonad-config";
   version = "0.1.0.0";
   src = builtins.path {
-    name = "my-xmonad";
+    name = "xmonad-config";
     path = ./.;
   };
   isLibrary = false;

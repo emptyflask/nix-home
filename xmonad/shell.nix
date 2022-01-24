@@ -6,9 +6,12 @@ let
 
   project = import ./release.nix;
 
+  shell-pkgs = with haskellPackages; [
+    implicit-hie
+  ];
+
 in
   pkgs.stdenv.mkDerivation {
     name = "shell";
-    buildInputs = project.env.nativeBuildInputs;
+    buildInputs = shell-pkgs ++ project.env.nativeBuildInputs;
   }
-

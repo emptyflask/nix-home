@@ -14,7 +14,7 @@ with pkgs;
       haskellPackages.xmonad-contrib
     ];
 
-    config = ./xmonad.hs;
+    config = ./lib/xmonad.hs;
 
     libFiles = {
       "Colors.hs"     = ./lib/Colors.hs;
