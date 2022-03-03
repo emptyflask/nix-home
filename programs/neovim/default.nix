@@ -1,7 +1,7 @@
 { config, pkgs, lib, ... }:
 
 let
-  unstable = import <nixos-unstable> {};
+  unstable = (if pkgs.stdenv.isDarwin then (import <nixpkgs>) else (import <nixos-unstable>)) {};
   # custom = pkgs.vimPlugins // pkgs.callPackage ./custom-plugins.nix {pkgs = unstable;};
 
   concatFiles = files:

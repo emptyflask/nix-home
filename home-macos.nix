@@ -14,7 +14,7 @@ args@{ config, pkgs, lib, ... }:
 
     direnv = {
       enable = true;
-      enableNixDirenvIntegration = true;
+      nix-direnv.enable = true;
     };
 
     fzf.enable          = true;
@@ -41,9 +41,10 @@ args@{ config, pkgs, lib, ... }:
     ./accounts
     ./programs/alacritty
     ./programs/git
+    ./programs/kitty
     ./programs/neomutt
     ./programs/neovim
-    ./programs/tmux
+    # ./programs/tmux
     ./programs/vim
     (import ./programs/zsh (args // {chruby = pkgs.chruby;}))
   ];

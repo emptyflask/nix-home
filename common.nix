@@ -22,10 +22,9 @@ with pkgs;
     ripgrep
     shared_mime_info    # recognize file types
     tealdeer            # tldr for various shell tools
-    tmux
     translate-shell
     units
-    xarchiver
+    # xarchiver
 
     # graphics / print
     imagemagick
@@ -50,7 +49,6 @@ with pkgs;
     nodePackages.eslint_d
     nodePackages.typescript
     nodePackages.typescript-language-server
-    yarn
 
     # programming - haskell
     ghc

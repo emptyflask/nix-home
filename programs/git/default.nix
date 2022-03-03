@@ -1,7 +1,7 @@
 { config, lib, pkgs, ... }:
 
 let
-  unstable = import <nixos-unstable> {};
+  unstable = (if pkgs.stdenv.isDarwin then (import <nixpkgs>) else (import <nixos-unstable>)) {};
 in
 {
   xdg.configFile."git/gitattributes".source = ./gitattributes;

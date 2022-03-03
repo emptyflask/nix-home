@@ -42,7 +42,7 @@
       # set -g default-terminal "xterm-256color"
       set -ga terminal-overrides ",*256col*:Tc"
 
-      set -g status-position top
+      set -g status-position bottom
       set -g status-interval 1
 
       set -g status-fg colour231

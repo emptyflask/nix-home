@@ -13,6 +13,7 @@
     };
 
     settings = {
+      font_size          = 14;
       font_family        = "Fira Code";
       bold_font          = "Fira Code Bold";
       italic_font        = "Fira Mono Regular Italic";
@@ -20,8 +21,8 @@
 
       background_opacity = "0.9";
       scrollback_lines   = 10000;
-      # scrollback_pager   = ''nvim -u NONE -c 'setlocal ft=man nonumber nolist showtabline=0 foldcolumn=0' -c "autocmd VimEnter * normal G" -'';
-      scrollback_pager   = "~/.config/kitty/scrollback.sh 'INPUT_LINE_NUMBER' 'CURSOR_LINE' 'CURSOR_COLUMN'";
+      scrollback_pager   = ''nvim -u NONE -c 'setlocal ft=man nonumber nolist showtabline=0 foldcolumn=0' -c "autocmd VimEnter * normal G" -'';
+      # scrollback_pager   = "~/.config/kitty/scrollback.sh 'INPUT_LINE_NUMBER' 'CURSOR_LINE' 'CURSOR_COLUMN'";
 
       enable_audio_bell  = false;
 
@@ -45,6 +46,8 @@
       active_tab_foreground   = "#272822";
       inactive_tab_background = "#272822";
       inactive_tab_foreground = "#75715e";
+
+      hide_window_decorations = "titlebar-only";
 
       # normal
       color0  = "#1d2021";
