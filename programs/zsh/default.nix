@@ -117,15 +117,6 @@ in
           ref = "master";
         };
       }
-
-      {
-        name = "zsh-nix-shell";
-        src = builtins.fetchGit {
-          url = "https://github.com/chisui/zsh-nix-shell.git";
-          ref = "master";
-        };
-      }
-
     ];
 
   };
