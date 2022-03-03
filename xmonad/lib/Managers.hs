@@ -100,6 +100,8 @@ myManageHook = composeAll $
                   , ("rofi"                           , doIgnore)
                   , ("screenshot"                     , doFloat)
                   , ("unit-editor"                    , doFloat)
+                  , ("kazam"                          , doFloat)
+                  , (".kazam-wrapped"                 , doFloat)
                   ]
 
 -- Match a string against any one of a window's class, title, name or role.
