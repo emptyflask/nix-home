@@ -76,7 +76,9 @@ with pkgs;
     unstable.terraform
     unstable.xdg-utils
     whois
-    xfce.thunar
+    (xfce.thunar.override { thunarPlugins = with pkgs; [ xfce.thunar-volman xfce.thunar-archive-plugin ]; })
+    xfce.xfconf
+    xfce.exo
     yubioath-desktop
     yubikey-personalization
     zeal                # docs (like dash)
