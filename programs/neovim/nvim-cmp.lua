@@ -2,8 +2,8 @@
 local cmp = require'cmp'
 
 cmp.setup({
-  experimental = {
-    native_menu = true
+  view = {
+    entries = "native"
   },
 
   snippet = {
