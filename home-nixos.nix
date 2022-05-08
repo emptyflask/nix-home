@@ -47,7 +47,7 @@ args@{ config, pkgs, lib, ... }:
 
   imports = [
     ./common.nix
-    ./linux.nix
+    (import ./linux.nix args)
     ./environment.nix
     ./accounts
     ./services/dunst
@@ -59,7 +59,7 @@ args@{ config, pkgs, lib, ... }:
     ./programs/neomutt
     ./programs/neovim
     ./programs/rofi
-    ./programs/st
+    # ./programs/st
     ./programs/tmux
     ./programs/vim
     ./programs/zathura

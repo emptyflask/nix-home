@@ -4,10 +4,11 @@ import qualified Colors
 import           System.IO
 import           XMonad
 import           XMonad.Hooks.DynamicLog
-import           XMonad.Util.NamedScratchpad (namedScratchpadFilterOutWorkspacePP)
+import           XMonad.Hooks.StatusBar.PP
+import           XMonad.Util.NamedScratchpad (scratchpadWorkspaceTag)
 
 xmobarLogHook :: Handle -> X ()
-xmobarLogHook output = dynamicLogWithPP . namedScratchpadFilterOutWorkspacePP $
+xmobarLogHook output = dynamicLogWithPP . filterOutWsPP [scratchpadWorkspaceTag] $
     def { ppOutput          = hPutStrLn output
         , ppCurrent         = fg Colors.greenB  .  bWrap "[" "]" -- Current workspace in xmobar
         , ppVisible         = fg Colors.blueB   .  bWrap " " " " -- Visible but not current workspace

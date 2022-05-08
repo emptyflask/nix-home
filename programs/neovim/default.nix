@@ -1,9 +1,6 @@
 { config, pkgs, lib, ... }:
 
 let
-  unstable = (if pkgs.stdenv.isDarwin then (import <nixpkgs>) else (import <nixos-unstable>)) {};
-  # custom = pkgs.vimPlugins // pkgs.callPackage ./custom-plugins.nix {pkgs = unstable;};
-
   concatFiles = files:
     let
       wrapLua = contents: "lua << EOF\n" + contents + "\nEOF\n";
@@ -36,7 +33,7 @@ with pkgs;
 {
   programs.neovim = {
     enable    = true;
-    package   = unstable.neovim-unwrapped;
+    package   = neovim-unwrapped;
 
     viAlias   = true;
     vimAlias  = false;
@@ -66,10 +63,12 @@ with pkgs;
     '';
 
     extraPackages = [
+      dhall-lsp-server
       nodePackages.typescript
       nodePackages.typescript-language-server
       rust-analyzer
       shfmt
+      terraform-lsp
       tree-sitter
     ];
 
@@ -78,7 +77,7 @@ with pkgs;
       Tabular
       Tagbar
       editorconfig-vim
-      unstable.vimPlugins.fugitive
+      fugitive
       # { plugin = gitgutter;
       #   config = ''let g:gitgutter_git_executable = "${git}/bin/git"'';
       # }
@@ -88,7 +87,7 @@ with pkgs;
       nvim-lspconfig
       repeat
       sensible
-      unstable.vimPlugins.tlib
+      tlib
       undotree
       vim-abolish
       vim-commentary
@@ -125,6 +124,7 @@ with pkgs;
 
       # LANGUAGE / FILETYPE SPECIFIC
       Hoogle
+      dhall-vim
       elm-vim
       ghc-mod-vim
       haskell-vim
@@ -134,17 +134,18 @@ with pkgs;
       vim-stylish-haskell
       vim-polyglot  # syntax highlighting for most languages
       vim-rails
+      vim-terraform
       vimwiki
 
       # COMPLETION
-      (plugin "hrsh7th/nvim-cmp")
       (plugin "hrsh7th/cmp-buffer")
       (plugin "hrsh7th/cmp-cmdline")
-      unstable.vimPlugins.cmp-nvim-lsp
-      unstable.vimPlugins.cmp-nvim-lua
-      unstable.vimPlugins.cmp-path
-      unstable.vimPlugins.cmp-vsnip
-      unstable.vimPlugins.vim-vsnip
+      nvim-cmp
+      cmp-nvim-lsp
+      cmp-nvim-lua
+      cmp-path
+      cmp-vsnip
+      vim-vsnip
       vim-snippets
     ];
 

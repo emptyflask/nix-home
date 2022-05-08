@@ -13,7 +13,7 @@
     };
 
     settings = {
-      font_size          = 14;
+      font_size          = 11; # 14 on macbook
       font_family        = "Fira Code";
       bold_font          = "Fira Code Bold";
       italic_font        = "Fira Mono Regular Italic";

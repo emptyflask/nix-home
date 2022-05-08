@@ -49,9 +49,10 @@ nmap <c-n> :cnext<CR>
 
 " Turn off search highlighting
 map <silent> <leader><esc> :noh<return>
-" This is actually ctrl-/
+" This is actually ctrl-/ (https://apple.stackexchange.com/questions/24261/how-do-i-send-c-that-is-control-slash-to-the-terminal)
 map <silent> <c-_> :noh<return>
-" https://apple.stackexchange.com/questions/24261/how-do-i-send-c-that-is-control-slash-to-the-terminal
+" this should now work in recent versions
+map <silent> <c-/> :noh<return>
 
 " Very magic searching (requires less regex character escaping)
 nmap // /\v
@@ -196,4 +197,5 @@ map <c-e> :NvimTreeToggle<cr>
 map <F10> :echo join(reverse(map(synstack(line('.'), col('.')), {i,v -> synIDattr(v, 'name')})))<cr>
 
 " Escape from terminal mode
-tnoremap <Esc> <C-\><C-n>
+" DISABLED - breaks escaping from fzf
+" tnoremap <Esc> <C-\><C-n>

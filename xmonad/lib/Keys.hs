@@ -32,7 +32,7 @@ import qualified Paths
 
 -- Keyboard --
 myKeys :: XConfig Layout -> M.Map (KeyMask, KeySym) (X ())
-myKeys conf@ XConfig {XMonad.modMask = modm} = M.fromList $
+myKeys conf@XConfig {XMonad.modMask = modm} = M.fromList $
     -- launching and killing programs
     [ ((modm,                     xK_Return   ), spawn Paths.kitty)
     , ((modm .|. alt,             xK_Return   ), spawn "urxvt")

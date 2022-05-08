@@ -1,8 +1,7 @@
-{ pkgs, lib, ... }:
+{ config, pkgs, lib, ... }:
 
 let
 
-  unstable = import <nixos-unstable> { config = { allowUnfree = true; }; };
   all-hies = import (builtins.fetchTarball "https://github.com/infinisil/all-hies/tarball/master") {};
   ghcide-nix = import (builtins.fetchTarball "https://github.com/cachix/ghcide-nix/tarball/master") {};
 
@@ -26,6 +25,16 @@ with pkgs;
     variant = "altgr-intl";
   };
 
+  home.pointerCursor = {
+    package = pkgs.gnome3.gnome-themes-extra;
+    size = 16; # default = 32; example = 64;
+    name = "Adwaita";
+    x11 = {
+      enable = true;
+      defaultCursor = "left_ptr"; # example = "X_cursor";
+    };
+  };
+
   fonts.fontconfig.enable = true;
 
   gtk = {
@@ -40,29 +49,29 @@ with pkgs;
     };
     theme = {
       name = "Adwaita-dark";
-      package = pkgs.gnome3.gnome-themes-standard;
+      package = pkgs.gnome3.gnome-themes-extra;
     };
   };
 
   home.packages = with pkgs; [
-    unstable.cachix
-    unstable.postman
+    cachix
+    postman
 
     # ghcide-nix.ghcide-ghc865
 
-    # unstable._1password
-    # unstable._1password-gui
+    # _1password
+    # _1password-gui
     bmon                # network monitor
-    unstable.burpsuite  # network security tool
+    burpsuite  # network security tool
     dmenu               # minimal desktop menu
     dropbox
-    unstable.exodus     # crypto wallet
+    exodus     # crypto wallet
     gnome3.cheese       # webcam photos
     # gnome3.gnome-calendar
     # gnome3.gnome-control-center
     google-chrome
     jmtpfs              # Media Transfer Protocol (usb device filesystems)
-    unstable.joplin-desktop # notes
+    joplin-desktop # notes
     keybase
     keybase-gui
     kitty               # terminal
@@ -73,8 +82,7 @@ with pkgs;
     qemu
     scowl               # spellchecker / dictionary
     st
-    unstable.terraform
-    unstable.xdg-utils
+    xdg-utils
     whois
     (xfce.thunar.override { thunarPlugins = with pkgs; [ xfce.thunar-volman xfce.thunar-archive-plugin ]; })
     xfce.xfconf
@@ -85,7 +93,11 @@ with pkgs;
 
     # games
     # steam-run
-    # unstable.unityhub
+    # unityhub
+    lutris
+    minigalaxy
+    wine
+    winetricks
 
     # graphics / print
     # adobe-reader
@@ -100,27 +112,27 @@ with pkgs;
     scrot               # CLI screenshotter
 
     # programming - general
-    aws-sam-cli         # AWS serverless app model
     dbeaver             # DB GUI
     docker-compose
     gcc
     ltrace              # lib trace
     strace              # system call trace
-    unstable.vscode
-    unstable.nixfmt     # format nix
-    unstable.uncrustify # format c/c++/c#/java/etc
+    vscode
+    nixfmt     # format nix
+    uncrustify # format c/c++/c#/java/etc
 
     # programming - haskell
-    unstable.haskellPackages.stylish-haskell
-    unstable.ormolu
-    unstable.stack
+    haskellPackages.stylish-haskell
+    ormolu
+    stack
 
     # chat / email
-    unstable.discord
-    unstable.signal-desktop
+    discord
+    protonmail-bridge
+    signal-desktop
     slack
-    unstable.thunderbird-bin
-    unstable.zoom-us
+    thunderbird-bin
+    zoom-us
 
     # fonts (format with !column -t)
     aileron            comfortaa              dejavu_fonts
@@ -129,7 +141,7 @@ with pkgs;
     font-awesome       helvetica-neue-lt-std  hermit                   ibm-plex
     inconsolata        iosevka                league-of-moveable-type  liberation_ttf
     libre-baskerville  libre-bodoni           libre-caslon             libre-franklin
-    medio              mplus-outline-fonts    national-park-typeface   norwester-font
+    medio              national-park-typeface   norwester-font
     penna              route159               seshat
     tenderness         vegur                  vistafonts
     (nerdfonts.override { fonts = [ "FiraCode" "DroidSansMono" ]; })
@@ -141,7 +153,7 @@ with pkgs;
     mplayer
     mpv
     spotify
-    unstable.vlc
+    vlc
   ];
 
   dconf.enable = false;
@@ -219,16 +231,16 @@ with pkgs;
     '';
 
     windowManager = import ./xmonad/default.nix pkgs;
-
-    pointerCursor = {
-      package = pkgs.gnome3.gnome-themes-standard;
-      size = 16; # default = 32; example = 64;
-      defaultCursor = "left_ptr"; # example = "X_cursor";
-      name = "Adwaita";
-    };
   };
 
   imports = [
+    ./services/protonmail-bridge
     ./xmobar
   ];
+
+  services.protonmail-bridge = {
+    enable = true;
+    nonInteractive = true;
+    logLevel = "debug";
+  };
 }

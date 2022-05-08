@@ -1,8 +1,5 @@
 { config, lib, pkgs, ... }:
 
-let
-  unstable = (if pkgs.stdenv.isDarwin then (import <nixpkgs>) else (import <nixos-unstable>)) {};
-in
 {
   xdg.configFile."git/gitattributes".source = ./gitattributes;
   xdg.configFile."git/ignore".source = ./ignore;
@@ -68,7 +65,7 @@ in
       core = {
         editor         = "nvim";
         attributesFile = "~/.git/gitattributes";
-        pager          =  "${unstable.delta}/bin/delta";
+        pager          =  "${pkgs.delta}/bin/delta";
       };
 
       delta = {
@@ -96,7 +93,7 @@ in
       include.path = "${./themes.gitconfig}";
 
       interactive = {
-        diffFilter = "${unstable.delta}/bin/delta --color-only";
+        diffFilter = "${pkgs.delta}/bin/delta --color-only";
       };
 
       merge = {

@@ -23,6 +23,7 @@ GTAGS
 Gemfile.local
 Gemfile.local.lock
 node_modules/
+result
 tags
 tags.lock
 tags.temp

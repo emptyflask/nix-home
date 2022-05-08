@@ -20,7 +20,7 @@ with pkgs;
     pandoc              # document converter
     ranger              # CLI file manager
     ripgrep
-    shared_mime_info    # recognize file types
+    shared-mime-info    # recognize file types
     tealdeer            # tldr for various shell tools
     translate-shell
     units

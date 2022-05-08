@@ -1,14 +1,10 @@
 { pkgs, ... }:
 
-let
-  unstable = import <nixos-unstable> {};
-in
-
 with pkgs;
 {
   services.polybar = {
     enable = false;
-    package = unstable.polybar.override {
+    package = polybar.override {
       alsaSupport = true;
       githubSupport = true;
       mpdSupport = true;
