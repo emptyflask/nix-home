@@ -52,7 +52,7 @@ with pkgs;
 
     # programming - haskell
     ghc
-    cabal2nix
+    # cabal2nix
     cabal-install
     haskellPackages.apply-refact
     haskellPackages.ghcid

@@ -39,13 +39,14 @@ args@{ config, pkgs, lib, ... }:
     ./macos.nix
     ./environment.nix
     ./accounts
-    ./programs/alacritty
+    # ./programs/alacritty
     ./programs/git
     ./programs/kitty
-    ./programs/neomutt
+    # ./programs/neomutt
     ./programs/neovim
     # ./programs/tmux
     ./programs/vim
+    ./yabai.nix
     (import ./programs/zsh (args // {chruby = pkgs.chruby;}))
   ];
 

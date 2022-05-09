@@ -76,6 +76,8 @@
       color19 = "#484844";
       color20 = "#918f88";
       color21 = "#d9d7cc";
+
+      macos_quit_when_last_window_closed = "yes";
     };
   };
 }

@@ -4,7 +4,7 @@ with pkgs;
 {
   home.packages = with pkgs; [
     cachix
-    coreutils
+    # coreutils
     xdg-utils
 
     # programming - general
