@@ -3,7 +3,6 @@ module Logging (xmobarLogHook) where
 import qualified Colors
 import           System.IO
 import           XMonad
-import           XMonad.Hooks.DynamicLog
 import           XMonad.Hooks.StatusBar.PP
 import           XMonad.Util.NamedScratchpad (scratchpadWorkspaceTag)
 

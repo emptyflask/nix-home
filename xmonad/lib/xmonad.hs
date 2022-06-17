@@ -7,7 +7,7 @@ import           XMonad.Actions.GroupNavigation (historyHook)
 import           XMonad.Actions.Navigation2D
 import           XMonad.Actions.ShowText        (handleTimerEvent)
 
-import           XMonad.Hooks.EwmhDesktops      (ewmh, fullscreenEventHook)
+import           XMonad.Hooks.EwmhDesktops      (ewmh, ewmhFullscreen)
 import           XMonad.Hooks.SetWMName
 import           XMonad.Hooks.UrgencyHook       (NoUrgencyHook (..),
                                                  withUrgencyHook)
@@ -28,6 +28,7 @@ main = do
   xmproc <- spawnPipe Paths.xmobar
   xmonad $ withUrgencyHook NoUrgencyHook
       . ewmh
+      . ewmhFullscreen
       . withNavigation2DConfig def
         { defaultTiledNavigation = hybridOf sideNavigation centerNavigation }
 
@@ -41,7 +42,6 @@ main = do
         , focusFollowsMouse  = False
 
         , handleEventHook    = handleEventHook desktopConfig
-                                <+> fullscreenEventHook
                                 <+> handleTimerEvent
 
         , handleExtraArgs    = handleExtraArgs desktopConfig

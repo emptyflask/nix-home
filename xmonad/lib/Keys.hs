@@ -58,8 +58,9 @@ myKeys conf@XConfig {XMonad.modMask = modm} = M.fromList $
 
     -- focus
     , ((alt,            xK_Tab      ), GN.nextMatch GN.History (return True))
-    , ((modm,           xK_Tab      ), moveTo Next NonEmptyWS)
-    , ((modm .|. shift, xK_Tab      ), moveTo Prev NonEmptyWS)
+    , ((modm,           xK_Tab      ), moveTo Next $ Not emptyWS)
+    , ((modm .|. shift, xK_Tab      ), moveTo Prev $ Not emptyWS)
+
     , ((modm,           xK_j        ), windows W.focusDown)
     , ((modm,           xK_k        ), windows W.focusUp)
     , ((modm,           xK_Down     ), windows W.focusDown)
