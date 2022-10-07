@@ -20,7 +20,9 @@ with pkgs;
         vi_mode_style = "Block";
       };
 
-      background_opacity = 0.9;
+      window = {
+        opacity = 0.9;
+      };
 
       # Colors (Gruvbox dark)
       colors = {

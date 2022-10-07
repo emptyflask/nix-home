@@ -26,7 +26,7 @@ with pkgs;
   };
 
   home.pointerCursor = {
-    package = pkgs.gnome3.gnome-themes-extra;
+    package = pkgs.gnome.gnome-themes-extra;
     size = 16; # default = 32; example = 64;
     name = "Adwaita";
     x11 = {
@@ -49,7 +49,7 @@ with pkgs;
     };
     theme = {
       name = "Adwaita-dark";
-      package = pkgs.gnome3.gnome-themes-extra;
+      package = pkgs.gnome.gnome-themes-extra;
     };
   };
 
@@ -65,10 +65,10 @@ with pkgs;
     burpsuite  # network security tool
     dmenu               # minimal desktop menu
     dropbox
-    exodus     # crypto wallet
-    gnome3.cheese       # webcam photos
-    # gnome3.gnome-calendar
-    # gnome3.gnome-control-center
+    # exodus     # crypto wallet
+    gnome.cheese       # webcam photos
+    # gnome.gnome-calendar
+    # gnome.gnome-control-center
     google-chrome
     jmtpfs              # Media Transfer Protocol (usb device filesystems)
     joplin-desktop # notes
@@ -78,6 +78,7 @@ with pkgs;
     libreoffice
     lxmenu-data         # installed apps
     pavucontrol
+    protonvpn-cli
     qalculate-gtk       # calculator
     qemu
     scowl               # spellchecker / dictionary
@@ -108,7 +109,7 @@ with pkgs;
     gimp-with-plugins
     krita
     meshlab
-    scribusUnstable     # page layout
+    scribus             # page layout
     scrot               # CLI screenshotter
 
     # programming - general
@@ -134,16 +135,41 @@ with pkgs;
     thunderbird-bin
     zoom-us
 
-    # fonts (format with !column -t)
-    aileron            comfortaa              dejavu_fonts
-    eunomia            f5_6                   fantasque-sans-mono      ferrum
-    fira               fira-code-symbols      fira-mono
-    font-awesome       helvetica-neue-lt-std  hermit                   ibm-plex
-    inconsolata        iosevka                league-of-moveable-type  liberation_ttf
-    libre-baskerville  libre-bodoni           libre-caslon             libre-franklin
-    medio              national-park-typeface   norwester-font
-    penna              route159               seshat
-    tenderness         vegur                  vistafonts
+    # fonts
+    aileron
+    caladea # free cambria
+    carlito # free calibri
+    comfortaa
+    dejavu_fonts
+    eunomia
+    f5_6
+    fantasque-sans-mono
+    ferrum
+    fira
+    fira-code-symbols
+    fira-mono
+    font-awesome_5
+    font-awesome_6
+    helvetica-neue-lt-std
+    hermit
+    ibm-plex
+    inconsolata
+    league-of-moveable-type
+    liberation_ttf
+    libre-baskerville
+    libre-bodoni
+    libre-caslon
+    libre-franklin
+    medio
+    national-park-typeface
+    norwester-font
+    penna
+    route159
+    seshat
+    tenderness
+    vegur
+    vistafonts
+
     (nerdfonts.override { fonts = [ "FiraCode" "DroidSansMono" ]; })
 
     # media
@@ -152,6 +178,7 @@ with pkgs;
     handbrake           # dvd ripper
     mplayer
     mpv
+    smplayer
     spotify
     vlc
   ];
@@ -165,18 +192,18 @@ with pkgs;
       enable       = true;
       fade         = true;
       fadeDelta    = 5;
-      fadeSteps    = ["0.04" "0.04"];
+      fadeSteps    = [0.04 0.04];
       shadow       = true;
       backend      = "xrender";
       vSync        = true;
       # vSync        = "opengl";
-      extraOptions = ''
+      settings = {
         glx-no-rebind-pixmap  = true;
         glx-no-stencil        = true;
         # glx-copy-from-front   = false;
         use-damage            = true;
         xrender-sync-fence    = true;
-      '';
+      };
     };
 
     gpg-agent = {
@@ -227,7 +254,7 @@ with pkgs;
 
       ${pkgs.networkmanagerapplet}/bin/nm-applet &
 
-      ${pkgs.alsaUtils}/bin/amixer -c0 set Headphone 100%,100%
+      ${pkgs.alsa-utils}/bin/amixer -c0 set Headphone 100%,100%
     '';
 
     windowManager = import ./xmonad/default.nix pkgs;

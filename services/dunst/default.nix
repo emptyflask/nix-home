@@ -4,7 +4,7 @@ with pkgs;
   services.dunst = {
     enable = true;
 
-    iconTheme.package = pkgs.gnome3.adwaita-icon-theme;
+    iconTheme.package = pkgs.gnome.adwaita-icon-theme;
     iconTheme.name = "Adwaita";
 
     settings = {

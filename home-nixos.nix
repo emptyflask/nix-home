@@ -1,7 +1,6 @@
 args@{ config, pkgs, lib, ... }:
 
 {
-
   nixpkgs.config.allowUnfree = true;
 
   # nixpkgs.config.packageOverrides = self : rec {
@@ -66,4 +65,6 @@ args@{ config, pkgs, lib, ... }:
     (import ./programs/zsh args)
     ./xresources
   ];
+
+  home.stateVersion = "18.09";
 }
