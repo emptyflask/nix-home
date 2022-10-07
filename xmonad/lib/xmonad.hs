@@ -64,8 +64,10 @@ main = do
   where
     startup = do
       startupHook desktopConfig
-      spawnOnOnce "2" "thunderbird"
-      spawnOnOnce "3" "slack"
-      spawnOnOnce "3" "signal-desktop"
-      spawnOnOnce "9" "spotify"
+      spawnOnOnce "1" Paths.chrome
+      spawnOnOnce "2" Paths.thunderbird
+      spawnOnOnce "3" Paths.slack
+      spawnOnOnce "4" Paths.kitty
+      spawnOnOnce "3" Paths.signal
+      spawnOnOnce "9" Paths.spotify
       setWMName "LG3D" -- Java app focus fix

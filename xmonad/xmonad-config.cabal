@@ -5,12 +5,12 @@ cabal-version:       >=1.10
 
 executable xmonad-x86_64-linux
   main-is:             xmonad.hs
-  other-modules:       Workspaces, Keys, Logging, Layout, Managers, Colors, Paths
+  other-modules:       Workspaces, Keys, Logging, Layout, Managers, Colors, Paths, CenteredIfSingle
   build-depends:       base
                      , containers
                      , xmobar >= 0.36
                      , xmonad >= 0.15
-                     , xmonad-contrib >= 0.16
+                     , xmonad-contrib >= 0.17
                      , X11
   hs-source-dirs:      lib
   default-language:    Haskell2010

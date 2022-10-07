@@ -28,13 +28,12 @@ import           Graphics.X11.ExtraTypes.XF86
 import           System.Exit
 
 import           Managers                           (scratchpads)
-import qualified Paths
 
 -- Keyboard --
 myKeys :: XConfig Layout -> M.Map (KeyMask, KeySym) (X ())
 myKeys conf@XConfig {XMonad.modMask = modm} = M.fromList $
     -- launching and killing programs
-    [ ((modm,                     xK_Return   ), spawn Paths.kitty)
+    [ ((modm,                     xK_Return   ), spawn $ XMonad.terminal conf)
     , ((modm .|. alt,             xK_Return   ), spawn "urxvt")
     , ((modm,                     xK_f        ), spawn "thunar")
     , ((modm .|. shift,           xK_c        ), kill)
@@ -81,6 +80,12 @@ myKeys conf@XConfig {XMonad.modMask = modm} = M.fromList $
     , ((modm .|. alt,        xK_Left     ), N2D.windowGo L False)
     , ((modm .|. alt,        xK_Up       ), N2D.windowGo U False)
     , ((modm .|. alt,        xK_Down     ), N2D.windowGo D False)
+
+    -- Swap adjacent windows
+    , ((modm .|. ctrl,       xK_Right    ), N2D.windowSwap R False)
+    , ((modm .|. ctrl,       xK_Left     ), N2D.windowSwap L False)
+    , ((modm .|. ctrl,       xK_Up       ), N2D.windowSwap U False)
+    , ((modm .|. ctrl,       xK_Down     ), N2D.windowSwap D False)
 
     -- Binary Space Partition
     , ((modm .|. alt,               xK_l     ), sendMessage $ ExpandTowards R)
