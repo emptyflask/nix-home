@@ -44,6 +44,9 @@ in
       be  = "bundle exec";
       trs = "touch tmp/restart.txt";
 
+      # image output in kitty terminal
+      icat="kitty +kitten icat";
+
       # pngcrush with default settings
       crush = "${pkgs.pngcrush}/bin/pngcrush -d crushed -rem gAMA -rem cHRM -rem iCCP -rem sRGB";
 
