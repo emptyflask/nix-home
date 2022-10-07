@@ -21,7 +21,10 @@ in
     enableAutosuggestions = true;
     enableCompletion = true;
     defaultKeymap = "viins";
-    history.extended = true;
+    history = {
+      extended = true;
+      size = 50000;
+    };
 
     initExtra = (builtins.readFile ./zshrc) + source_chruby + ''
       source ${pkgs.nix-index}/etc/profile.d/command-not-found.sh
