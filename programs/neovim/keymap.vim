@@ -191,7 +191,8 @@ omap \\  <Plug>Commentary
 nmap \\\ <Plug>CommentaryLine
 
 " Open file browser
-map <c-e> :NvimTreeToggle<cr>
+map <c-d> :NvimTreeToggle<cr>
+map <c-e> :NvimTreeFindFile<cr>
 
 " Lookup syntax type for current word
 map <F10> :echo join(reverse(map(synstack(line('.'), col('.')), {i,v -> synIDattr(v, 'name')})))<cr>
