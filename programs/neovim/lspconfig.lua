@@ -38,6 +38,7 @@ local servers = {
   'dhall_lsp_server',
   'hls',
   'pyright',
+  'rescriptls',
   'rust_analyzer',
   'solargraph',
   'tsserver'

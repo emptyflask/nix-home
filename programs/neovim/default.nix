@@ -93,7 +93,7 @@ with pkgs;
       # THEME / VISUAL
       lightline-vim
       { # Lua port of gruvbox-community w/ treesitter support
-        plugin = (pluginGit "HEAD" "ellisonleao/gruvbox.nvim");
+        plugin = (pluginGit "main" "ellisonleao/gruvbox.nvim");
         type = "lua";
         config = ''
           require("gruvbox").setup({ contrast = "hard" })
@@ -138,6 +138,8 @@ with pkgs;
       vim-rails
       vim-terraform
       vimwiki
+
+      (pluginGit "master" "rescript-lang/vim-rescript")
 
       # COMPLETION
       cmp-buffer
