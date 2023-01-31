@@ -1,9 +1,23 @@
 { pkgs, ... }:
 
-with pkgs;
+let
+  # xmobarSrc = pkgs.fetchgit {
+  #   url = "https://codeberg.org/xmobar/xmobar.git";
+  #   rev = "26726e092beb0851743c3fb046e82ce323d818e6";
+  #   sha256 = "sha256-VT54ZrUazWG6fPNVRLhfXhjdBWgtZyQ8y/i9TIv1RZw=";
+  # };
+
+  # myHaskellPackages = pkgs.haskellPackages.override {
+  #   overrides = self: super: {
+  #     xmobar = pkgs.haskell.lib.overrideCabal super.xmobar {
+  #       src = xmobarSrc;
+  #     };
+  #   };
+  # };
+
+in
 
 {
-
   xmonad = {
     enable = true;
     enableContribAndExtras = true;
@@ -27,16 +41,16 @@ with pkgs;
 
       "Paths.hs" = pkgs.writeText "Paths.hs" ''
         module Paths where
-        chrome      = "${google-chrome}/bin/google-chrome-stable"
-        htop        = "${htop}/bin/htop"
-        kitty       = "${kitty}/bin/kitty"
-        qalculate   = "${qalculate-gtk}/bin/qalculate-gtk"
-        signal      = "${signal-desktop}/bin/signal-desktop"
-        slack       = "${slack}/bin/slack"
-        spotify     = "${spotify}/bin/spotify"
-        thunderbird = "${thunderbird-bin}/bin/thunderbird"
-        xmobar      = "${haskellPackages.xmobar}/bin/xmobar"
-        zeal        = "${zeal}/bin/zeal"
+        chrome      = "${pkgs.google-chrome}/bin/google-chrome-stable"
+        htop        = "${pkgs.htop}/bin/htop"
+        kitty       = "${pkgs.kitty}/bin/kitty"
+        qalculate   = "${pkgs.qalculate-gtk}/bin/qalculate-gtk"
+        signal      = "${pkgs.signal-desktop}/bin/signal-desktop"
+        slack       = "${pkgs.slack}/bin/slack"
+        spotify     = "${pkgs.spotify}/bin/spotify"
+        thunderbird = "${pkgs.thunderbird-bin}/bin/thunderbird"
+        xmobar      = "${pkgs.xmobar}/bin/xmobar"
+        zeal        = "${pkgs.zeal}/bin/zeal"
       '';
     };
   };

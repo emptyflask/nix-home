@@ -57,9 +57,9 @@ in
 
   xdg.configFile."xmobar/xmobarrc".text = ''
     Config
-       { font             = "xft:Noto Sans Mono:pixelsize=13"
-       , additionalFonts  = [ "xft:Font Awesome 5 Free:style=Solid:pixelsize=13"
-                            , "xft:Noto Sans Mono:pixelsize=13:bold"
+       { font             = "Noto Sans Mono 10"
+       , additionalFonts  = [ "Font Awesome 5 Free Solid 10"
+                            , "Noto Sans Mono Bold 10"
                             ]
        , borderColor      = "white"
        , border           = NoBorder
@@ -86,7 +86,7 @@ in
              ] 50
 
           , Run Date
-             "<action=`${popupCalendar} --popup` button=1><fn=1><fc=#928374></fc></fn></action> <fc=#fe8019>%a %Y-%m-%d %I:%M %p</fc>"
+             "<action=`${popupCalendar} --popup` button=1><fn=1><fc=#928374></fc></fn></action> <fc=#fe8019>%a %Y-%m-%d %H:%M</fc>"
              "date" 10
 
           , Run DiskU
