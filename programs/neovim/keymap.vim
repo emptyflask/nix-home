@@ -36,6 +36,9 @@ inoremap <expr> <c-x><c-k> fzf#vim#complete('cat ' . g:dictionary)
 
 " ------------------------------------
 
+" Display inline error messages in a floating window
+nnoremap <silent> g? <cmd>lua vim.diagnostic.open_float()<CR>
+
 " Edit or view files in same directory as current file
 cnoremap %% <C-R>=expand('%:h').'/'<cr>
 map <leader>e :edit %%

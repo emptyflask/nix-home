@@ -22,7 +22,7 @@ with pkgs;
 {
   programs.neovim = {
     enable    = true;
-    package   = neovim-unwrapped;
+    # package   = neovim-unwrapped;
 
     viAlias   = true;
     vimAlias  = false;
@@ -51,6 +51,8 @@ with pkgs;
       nodePackages.typescript-language-server
       rust-analyzer
       shfmt
+      solargraph
+      sumneko-lua-language-server
       terraform-lsp
       tree-sitter
     ];
@@ -63,15 +65,84 @@ with pkgs;
       Tagbar
       editorconfig-vim
       fugitive
+      { plugin = leap-nvim;
+        type = "lua";
+        config = "require('leap').add_default_mappings()";
+      }
       neoformat
       nvim-jdtls
-      { plugin = (nvim-treesitter.withPlugins (plugins: pkgs.tree-sitter.allGrammars));
+      { plugin = (nvim-treesitter.withPlugins (plugins: with plugins; [
+          tree-sitter-bash
+          tree-sitter-c
+          tree-sitter-c-sharp
+          tree-sitter-clojure
+          tree-sitter-cmake
+          tree-sitter-comment
+          tree-sitter-commonlisp
+          tree-sitter-cpp
+          tree-sitter-css
+          tree-sitter-dart
+          tree-sitter-dockerfile
+          tree-sitter-elixir
+          tree-sitter-elm
+          tree-sitter-embedded-template
+          tree-sitter-erlang
+          tree-sitter-fennel
+          tree-sitter-go
+          tree-sitter-graphql
+          tree-sitter-haskell
+          tree-sitter-hcl
+          tree-sitter-html
+          tree-sitter-http
+          tree-sitter-java
+          tree-sitter-javascript
+          tree-sitter-jsdoc
+          tree-sitter-json
+          tree-sitter-jsonnet
+          tree-sitter-kotlin
+          tree-sitter-latex
+          tree-sitter-llvm
+          tree-sitter-lua
+          tree-sitter-make
+          tree-sitter-markdown
+          tree-sitter-nix
+          tree-sitter-ocaml
+          tree-sitter-ocaml-interface
+          tree-sitter-perl
+          tree-sitter-php
+          tree-sitter-python
+          tree-sitter-query
+          tree-sitter-regex
+          tree-sitter-ruby
+          tree-sitter-rust
+          tree-sitter-scala
+          tree-sitter-scheme
+          tree-sitter-scss
+          # tree-sitter-sql
+          tree-sitter-toml
+          tree-sitter-tsx
+          tree-sitter-typescript
+          tree-sitter-vim
+          tree-sitter-yaml
+          tree-sitter-zig
+        ]));
         type = "lua";
         config = builtins.readFile(./treesitter.lua);
+      }
+      {
+        plugin = (pluginGit "master" "ckolkey/ts-node-action");
+        type = "lua";
+        config = ''
+          require("ts-node-action").setup({})
+          vim.keymap.set({ "n" }, "<F12>", require("ts-node-action").node_action, { desc = "Trigger Node Action" })
+        '';
       }
       { plugin = nvim-lspconfig;
         type = "lua";
         config = builtins.readFile(./lspconfig.lua);
+      }
+      { plugin = (pluginGit "main" "echasnovski/mini.nvim");
+        type = "lua";
       }
       repeat
       sensible
@@ -133,6 +204,14 @@ with pkgs;
       neco-ghc
       hlint-refactor
       # intero-neovim
+      # { plugin = pluginGit "main" "semanticart/ruby-code-actions.nvim";
+      #   type = "lua";
+      #   config = builtins.readFile(./ruby-code-actions.lua);
+      # }
+      { plugin = rust-tools-nvim;
+        type = "lua";
+        config = builtins.readFile(./rust-tools.lua);
+      }
       vim-stylish-haskell
       vim-polyglot  # syntax highlighting for most languages
       vim-rails
@@ -153,7 +232,10 @@ with pkgs;
       cmp-nvim-lua
       cmp-path
       cmp-vsnip
-      vim-vsnip
+      { plugin = vim-vsnip;
+        config = builtins.readFile(./vsnip.vim);
+      }
+      vim-vsnip-integ
       vim-snippets
     ];
 
