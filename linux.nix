@@ -62,7 +62,7 @@ with pkgs;
     # _1password
     # _1password-gui
     bmon                # network monitor
-    burpsuite  # network security tool
+    # burpsuite  # network security tool
     dmenu               # minimal desktop menu
     dropbox
     # exodus     # crypto wallet
@@ -88,32 +88,32 @@ with pkgs;
     (xfce.thunar.override { thunarPlugins = with pkgs; [ xfce.thunar-volman xfce.thunar-archive-plugin ]; })
     xfce.xfconf
     xfce.exo
-    yubioath-desktop
+    yubioath-flutter
     yubikey-personalization
     zeal                # docs (like dash)
 
     # games
     # steam-run
     # unityhub
-    lutris
-    minigalaxy
+    # lutris
+    # minigalaxy
     wine
     winetricks
 
     # graphics / print
     # adobe-reader
-    blender
-    darktable
+    # blender
+    # darktable
     ffmpegthumbnailer
     flameshot           # screenshots (PrtSc)
-    gimp-with-plugins
-    krita
-    meshlab
-    scribus             # page layout
+    # gimp-with-plugins
+    # krita
+    # meshlab
+    # scribus             # page layout
     scrot               # CLI screenshotter
 
     # programming - general
-    dbeaver             # DB GUI
+    # dbeaver             # DB GUI
     docker-compose
     gcc
     ltrace              # lib trace
@@ -266,7 +266,7 @@ with pkgs;
   ];
 
   services.protonmail-bridge = {
-    enable = true;
+    enable = false;
     nonInteractive = true;
     logLevel = "debug";
   };

@@ -10,6 +10,7 @@ with pkgs;
     fd                  # find entries in filesystem
     fortune
     htop
+    httpie
     jq
     killall
     magic-wormhole      # simple secure file transfer
@@ -76,7 +77,7 @@ with pkgs;
 
     # chat / email
     neomutt             # CLI mail
-    protonmail-bridge
+    # protonmail-bridge
     weechat
 
     # fonts

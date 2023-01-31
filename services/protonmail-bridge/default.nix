@@ -34,7 +34,7 @@ in
   config = mkIf cfg.enable {
 
     home.packages = [ pkgs.protonmail-bridge ];
-    
+
     systemd.user.services.protonmail-bridge = {
       Unit = {
         Description = "Protonmail Bridge";
@@ -44,10 +44,14 @@ in
       Service = {
         Restart = "always";
         ExecStart = "${pkgs.protonmail-bridge}/bin/protonmail-bridge --no-window --log-level ${cfg.logLevel}" + optionalString (cfg.nonInteractive) " --noninteractive";
+        Environment = [
+          "PATH=${pkgs.gnome3.gnome-keyring}/bin:${pkgs.pass}/bin"
+          "PASSWORD_STORE_DIR=/home/jon/.password-store"
+        ];
       };
 
       Install = {
-        WantedBy = [ "default.target" ];
+        WantedBy = [ "graphical-session.target" ];
       };
     };
   };
