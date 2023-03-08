@@ -75,7 +75,7 @@ with pkgs;
     keybase
     keybase-gui
     kitty               # terminal
-    libreoffice
+    # libreoffice
     lxmenu-data         # installed apps
     pavucontrol
     protonvpn-cli
@@ -147,7 +147,6 @@ with pkgs;
     ferrum
     fira
     fira-code-symbols
-    fira-mono
     font-awesome_5
     font-awesome_6
     helvetica-neue-lt-std
@@ -175,7 +174,7 @@ with pkgs;
     # media
     calibre             # e-book library
     evince              # another PDF viewer
-    handbrake           # dvd ripper
+    # handbrake           # dvd ripper
     mplayer
     mpv
     smplayer

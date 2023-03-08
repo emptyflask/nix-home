@@ -16,8 +16,8 @@
       font_size          = 11; # 14 on macbook
       font_family        = "Fira Code";
       bold_font          = "Fira Code Bold";
-      italic_font        = "Fira Mono Regular Italic";
-      bold_italic_font   = "Fira Mono Bold Italic";
+      italic_font        = "JetBrains Mono Italic";
+      bold_italic_font   = "JetBrains Mono Bold Italic";
 
       background_opacity = "0.9";
       scrollback_lines   = 10000;

@@ -106,6 +106,7 @@ with pkgs;
           tree-sitter-make
           tree-sitter-markdown
           tree-sitter-nix
+          tree-sitter-norg
           tree-sitter-ocaml
           tree-sitter-ocaml-interface
           tree-sitter-perl
@@ -143,13 +144,21 @@ with pkgs;
       }
       { plugin = (pluginGit "main" "echasnovski/mini.nvim");
         type = "lua";
+        config = ''
+          require('mini.ai').setup()
+          require('mini.bracketed').setup()
+          require('mini.comment').setup({
+            mappings = {comment = "\\\\", comment_line = "\\\\\\", textobject = "\\\\"}
+          })
+          require('mini.move').setup()
+        '';
       }
       repeat
       sensible
       tlib
       undotree
       vim-abolish
-      vim-commentary
+      # vim-commentary
       vim-dispatch
       vim-grepper
       vim-gutentags
@@ -158,7 +167,7 @@ with pkgs;
       vim-startify
       vim-test
       vim-tmux-navigator
-      vim-unimpaired
+      # vim-unimpaired
       vimproc
 
       # THEME / VISUAL
@@ -216,7 +225,6 @@ with pkgs;
       vim-polyglot  # syntax highlighting for most languages
       vim-rails
       vim-terraform
-      vimwiki
 
       (pluginGit "master" "rescript-lang/vim-rescript")
 
@@ -237,6 +245,12 @@ with pkgs;
       }
       vim-vsnip-integ
       vim-snippets
+
+      # NEORG / ORG MODE (load after treesitter)
+      { plugin = (pluginGit "main" "nvim-neorg/neorg");
+        type = "lua";
+        config = builtins.readFile(./neorg.lua);
+      }
     ];
 
   };

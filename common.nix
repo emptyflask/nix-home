@@ -7,6 +7,7 @@ with pkgs;
 
     bat                 # cat clone with syntax highlighting and git integration
     bc                  # cli calculator
+    du-dust             # rust modern clone of du
     fd                  # find entries in filesystem
     fortune
     htop
@@ -84,8 +85,8 @@ with pkgs;
     fira
     fira-code
     fira-code-symbols
-    fira-mono
     font-awesome
+    jetbrains-mono
 
     # media
     ncmpcpp
