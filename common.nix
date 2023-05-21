@@ -12,7 +12,7 @@ with pkgs;
     htop
     jq
     killall
-    magic-wormhole      # simple secure file transfer
+    # magic-wormhole      # simple secure file transfer
     mosh                # ssh alternative
     nix-index
     nix-prefetch-git
@@ -34,7 +34,7 @@ with pkgs;
     foreman
     gnumake
     html-tidy           # format html
-    niv                 # nix channel config
+    # niv                 # nix channel config
     sourceHighlight
     shellcheck          # shell script analyzer
     tig                 # git tui frontend
@@ -53,12 +53,12 @@ with pkgs;
     # programming - haskell
     ghc
     # cabal2nix
-    cabal-install
-    haskellPackages.apply-refact
-    haskellPackages.ghcid
-    haskellPackages.haskell-language-server
-    haskellPackages.hlint
-    haskellPackages.yesod
+    # cabal-install
+    # haskellPackages.apply-refact
+    # haskellPackages.ghcid
+    # haskellPackages.haskell-language-server
+    # haskellPackages.hlint
+    # haskellPackages.yesod
 
     # programming - python
     python3Packages.pynvim # for neovim
@@ -80,7 +80,6 @@ with pkgs;
     weechat
 
     # fonts
-    fira
     fira-code
     fira-code-symbols
     fira-mono

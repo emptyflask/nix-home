@@ -44,8 +44,18 @@
       h               = "!git head";
       r               = "!git l -30";
       ra              = "!git r --all";
-      delete-merged   = ''!git branch --merged | egrep -v "\*|^\s+develop$|^\s+master$" | xargs -n 1 git branch -d'';
-      delete-squashed = ''!git checkout -q master && git for-each-ref refs/heads/ "--format=%(refname:short)" | while read branch; do mergeBase=$(git merge-base master $branch) && [[ $(git cherry master $(git commit-tree $(git rev-parse $branch\^{tree}) -p $mergeBase -m _)) == "-"* ]] && git branch -D $branch; done'';
+      # delete-merged   = ''!git branch --merged | egrep -v "\*|^\s+develop$|^\s+master$|^\s+main$" | xargs -n 1 git branch -d'';
+      delete-merged   = ''!f() { git branch --merged ''${1-master} | grep -v " ''${1-master}$" | xargs -r git branch -d; }; f'';
+      # delete-squashed = ''!git checkout -q master && git for-each-ref refs/heads/ "--format=%(refname:short)" | while read branch; do mergeBase=$(git merge-base master $branch) && [[ $(git cherry master $(git commit-tree $(git rev-parse $branch\^{tree}) -p $mergeBase -m _)) == "-"* ]] && git branch -D $branch; done'';
+      delete-squashed = builtins.replaceStrings ["\n"] [" "] ''
+        !f() {
+          git checkout -q "''${1-master}" && git for-each-ref refs/heads/ "--format=%(refname:short)" | while read branch;
+          do
+            mergeBase=$(git merge-base "''${1-master}" "$branch") &&
+              [[ $(git cherry "''${1-master}" $(git commit-tree $(git rev-parse "$branch"\^{tree}) -p "$mergeBase" -m _)) == "-"* ]] &&
+              git branch -D "$branch";
+          done
+        }; f'';
     };
 
     # Large File Storage
@@ -108,7 +118,10 @@
       ghi.token         = "!${pkgs.pass}/bin/pass api.github.com | ${pkgs.coreutils}/bin/head -1";
 
       pull.ff        = "only";
-      push.default   = "upstream";
+      push = {
+        autoSetupRemote = true;
+        default   = "upstream";
+      };
       rerere.enabled = true; # reuse recorded resolution
 
     };

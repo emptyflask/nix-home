@@ -1,4 +1,3 @@
-let g:gruvbox_contrast_dark = 'hard'
 colorscheme gruvbox
 
 " nvim-tree color overrides

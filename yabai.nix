@@ -1,36 +1,37 @@
 { config, pkgs, lib, ... }: {
-  home.file.yabai = {
-    executable = true;
-    target = ".config/yabai/yabairc";
-    text = ''
-      #!/usr/bin/env sh
 
-      # load scripting addition
-      sudo yabai --load-sa
-      yabai -m signal --add event=dock_did_restart action="sudo yabai --load-sa"
+  #home.file.yabai = {
+  #  executable = true;
+  #  target = ".config/yabai/yabairc";
+  #  text = ''
+  #    #!/usr/bin/env sh
 
-      yabai -m config layout bsp
-      yabai -m config auto_balance off
-      yabai -m config window_topmost on
+  #    # load scripting addition
+  #    sudo yabai --load-sa
+  #    yabai -m signal --add event=dock_did_restart action="sudo yabai --load-sa"
 
-      yabai -m config top_padding    20
-      yabai -m config bottom_padding 20
-      yabai -m config left_padding   20
-      yabai -m config right_padding  20
-      yabai -m config window_gap     20
-      yabai -m config external_bar   all:26:0
+  #    yabai -m config layout bsp
+  #    yabai -m config auto_balance off
+  #    yabai -m config window_topmost on
 
-      yabai -m config window_border on
-      yabai -m config window_border_width 2
-      yabai -m config active_window_border_color 0xff98971a
-      yabai -m config normal_window_border_color 0xff282828
+  #    yabai -m config top_padding    20
+  #    yabai -m config bottom_padding 20
+  #    yabai -m config left_padding   20
+  #    yabai -m config right_padding  20
+  #    yabai -m config window_gap     20
+  #    yabai -m config external_bar   all:26:0
 
-      # rules
-      yabai -m rule --add app="^System Preferences$" manage=off
+  #    yabai -m config window_border on
+  #    yabai -m config window_border_width 2
+  #    yabai -m config active_window_border_color 0xff98971a
+  #    yabai -m config normal_window_border_color 0xff282828
 
-      echo "yabai configuration loaded.."
-    '';
-  };
+  #    # rules
+  #    yabai -m rule --add app="^System Preferences$" manage=off
+
+  #    echo "yabai configuration loaded.."
+  #  '';
+  #};
 
   home.file.skhd = {
     target = ".config/skhd/skhdrc";
@@ -151,10 +152,10 @@
       ######################
 
       # create desktop, move window and follow focus - uses jq for parsing json (brew install jq)
-      shift + cmd - n : yabai -m space --create && \
-                        index="$(yabai -m query --spaces --display | jq 'map(select(."native-fullscreen" == 0))[-1].index')" && \
-                        yabai -m window --space "''${index}" && \
-                        yabai -m space --focus "''${index}"
+      # shift + cmd - n : yabai -m space --create && \
+      #                   index="$(yabai -m query --spaces --display | jq 'map(select(."native-fullscreen" == 0))[-1].index')" && \
+      #                   yabai -m window --space "''${index}" && \
+      #                   yabai -m space --focus "''${index}"
 
       # create desktop and follow focus - uses jq for parsing json (brew install jq)
       cmd + alt - n : yabai -m space --create && \
@@ -212,7 +213,10 @@
 
       # prevents skhd from monitoring events for listed processes.
       .blacklist [
+        "google chrome"
+        "kitty"
         "qutebrowser"
+        "terminal"
       ]
     '';
   };

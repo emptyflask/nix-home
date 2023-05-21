@@ -3,11 +3,11 @@ args@{ config, pkgs, lib, ... }:
 {
   nixpkgs.config.allowUnfree = true;
 
-  nixpkgs.overlays = [
-    (import (builtins.fetchTarball {
-      url = https://github.com/nix-community/neovim-nightly-overlay/archive/master.tar.gz;
-    }))
-  ];
+  # nixpkgs.overlays = [
+  #   (import (builtins.fetchTarball {
+  #     url = https://github.com/nix-community/neovim-nightly-overlay/archive/master.tar.gz;
+  #   }))
+  # ];
 
   programs = {
     broot.enable = true; # directory browser
@@ -33,6 +33,10 @@ args@{ config, pkgs, lib, ... }:
     ".psqlrc".source = ./home/psqlrc;
     ".railsrc".source = ./home/railsrc;
   };
+
+  home.stateVersion = "22.05";
+  home.username = "jonroberts";
+  home.homeDirectory = "/Users/jonroberts";
 
   imports = [
     ./common.nix

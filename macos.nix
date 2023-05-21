@@ -4,6 +4,8 @@ with pkgs;
 {
   home.packages = with pkgs; [
     cachix
+    # yabai
+
     # coreutils
     xdg-utils
 
@@ -12,8 +14,8 @@ with pkgs;
     uncrustify # format c/c++/c#/java/etc
 
     # programming - haskell
-    haskellPackages.stylish-haskell
-    ormolu
+    # haskellPackages.stylish-haskell
+    # ormolu
     stack
 
     # programming - ruby

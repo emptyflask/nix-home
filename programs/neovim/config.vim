@@ -56,7 +56,6 @@ set sidescrolloff=4
 " normally displayed i.e. whitespace, tabs, EOL
 set listchars=trail:·,tab:‣\ ,extends:,precedes:,nbsp:␣
 set list
-nmap <silent> <leader>s :set nolist!<CR>
 
 " Spaces, not tabs
 set softtabstop=2
