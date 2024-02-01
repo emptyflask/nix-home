@@ -19,6 +19,7 @@ with pkgs;
     nix-index
     nix-prefetch-git
     nix-zsh-completions
+    obsidian            # note taking
     pandoc              # document converter
     ranger              # CLI file manager
     ripgrep
