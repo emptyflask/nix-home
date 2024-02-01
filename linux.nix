@@ -74,7 +74,7 @@ with pkgs;
     keybase
     keybase-gui
     kitty               # terminal
-    # libreoffice
+    libreoffice
     lxmenu-data         # installed apps
     pavucontrol
     postman
@@ -113,9 +113,10 @@ with pkgs;
     scrot               # CLI screenshotter
 
     # programming - general
-    # dbeaver             # DB GUI
+    dbeaver             # DB GUI
     docker-compose
     gcc
+    lazydocker
     ltrace              # lib trace
     strace              # system call trace
     vscode
