@@ -33,16 +33,34 @@ args@{ config, pkgs, lib, ... }:
   ];
 
   programs = {
-    broot.enable        = true; # directory browser
+    broot.enable = true; # directory browser
 
     direnv = {
       enable = true;
       nix-direnv.enable = true;
     };
 
-    emacs.enable        = true;
     firefox.enable      = true;
     fzf.enable          = true;
+
+    gh = {
+      enable = true;
+      extensions = with pkgs; [
+        gh-cal
+        gh-eco
+      ];
+      settings = {
+        aliases = {
+          co = "pr checkout";
+          pv = "pr view";
+        };
+        git-protocol = "https";
+      };
+    };
+    gh-dash = {
+      enable = true;
+    };
+
     go.enable           = true;
     home-manager.enable = true;
     keychain.enable     = true;
