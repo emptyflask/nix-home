@@ -69,8 +69,8 @@ with pkgs;
     # programming - ruby
     bundix
     jekyll
-    ruby_3_0
-    rubyPackages_3_0.pry
+    ruby_3_2
+    rubyPackages_3_2.pry
 
     # programming - rust
     cargo
