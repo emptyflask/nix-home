@@ -6,6 +6,7 @@ module Layout (myLayoutHook) where
 import           XMonad.Layout
 import           XMonad.Layout.BinarySpacePartition
 import           XMonad.Layout.BorderResize
+import           XMonad.Layout.CenteredIfSingle
 import           XMonad.Layout.Column
 import           XMonad.Layout.MultiColumns
 import           XMonad.Layout.NoBorders
@@ -17,7 +18,6 @@ import           XMonad.Layout.Spacing
 import           XMonad.Layout.Tabbed
 import           XMonad.Layout.ThreeColumns
 
-import           CenteredIfSingle
 import qualified Colors
 
 myLayoutHook = showWName $ tallLeft ||| tallRight ||| full ||| threeCol ||| bsp ||| tab ||| one ||| nCols

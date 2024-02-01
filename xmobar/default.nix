@@ -97,7 +97,7 @@ in
              [ "-t", "<fn=1><fc=#928374></fc></fn> <dev> <fn=1><fc=#98971a></fc></fn><rx> <fn=1><fc=#d65d0e></fc></fn><tx>"
              , "-w", "7"
              , "-S", "True"
-             , "--", "--devices", "wlp10s0,eno1"
+             , "--", "--devices", "wlp10s0,eno1,wlp4s0"
              ] 20
 
           , Run Memory

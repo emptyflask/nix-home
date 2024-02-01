@@ -31,7 +31,6 @@ in
     config = ./lib/xmonad.hs;
 
     libFiles = {
-      "CenteredIfSingle.hs" = ./lib/CenteredIfSingle.hs;
       "Colors.hs"           = ./lib/Colors.hs;
       "Keys.hs"             = ./lib/Keys.hs;
       "Layout.hs"           = ./lib/Layout.hs;
@@ -44,6 +43,7 @@ in
         chrome      = "${pkgs.google-chrome}/bin/google-chrome-stable"
         htop        = "${pkgs.htop}/bin/htop"
         kitty       = "${pkgs.kitty}/bin/kitty"
+        obsidian    = "${pkgs.obsidian}/bin/obsidian"
         qalculate   = "${pkgs.qalculate-gtk}/bin/qalculate-gtk"
         signal      = "${pkgs.signal-desktop}/bin/signal-desktop"
         slack       = "${pkgs.slack}/bin/slack"

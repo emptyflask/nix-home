@@ -5,7 +5,7 @@ cabal-version:       >=1.10
 
 executable xmonad-x86_64-linux
   main-is:             xmonad.hs
-  other-modules:       Workspaces, Keys, Logging, Layout, Managers, Colors, Paths, CenteredIfSingle
+  other-modules:       Workspaces, Keys, Logging, Layout, Managers, Colors, Paths
   build-depends:       base
                      , containers
                      , xmobar >= 0.36

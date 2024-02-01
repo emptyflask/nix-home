@@ -14,8 +14,10 @@ import           XMonad.Actions.WithAll             (sinkAll)
 import           XMonad.Hooks.ManageDocks
 
 import           XMonad.Layout.BinarySpacePartition
+import           XMonad.Layout.LayoutScreens
 import           XMonad.Layout.ResizableTile        (MirrorResize (..))
 import           XMonad.Layout.Spacing
+import           XMonad.Layout.TwoPane
 
 import qualified XMonad.Prompt                      as Prompt
 import           XMonad.Prompt.Man
@@ -47,6 +49,11 @@ myKeys conf@XConfig {XMonad.modMask = modm} = M.fromList $
     , ((modm .|. shift,      xK_minus    ), setScreenWindowSpacing 20)
     , ((modm,                xK_space    ), sendMessage NextLayout)
     , ((modm .|. shift,      xK_space    ), flash "Reset Layout" >> setLayout (XMonad.layoutHook conf))
+
+    -- faux dual monitors
+    -- TODO: xinerama keys (mod-q/e/r) aren't working
+    , ((modm .|. ctrl,           xK_space), layoutScreens 2 (TwoPane 0.5 0.5))
+    , ((modm .|. ctrl .|. shift, xK_space), rescreen)
 
     -- floating layer stuff
     , ((modm,                xK_t        ), withFocused $ windows . W.sink)
@@ -96,7 +103,7 @@ myKeys conf@XConfig {XMonad.modMask = modm} = M.fromList $
     , ((modm .|. alt .|. ctrl,      xK_h     ), sendMessage $ ShrinkFrom L)
     , ((modm .|. alt .|. ctrl,      xK_j     ), sendMessage $ ShrinkFrom D)
     , ((modm .|. alt .|. ctrl,      xK_k     ), sendMessage $ ShrinkFrom U)
-    , ((modm,                       xK_r     ), sendMessage Rotate)
+    , ((modm,                       xK_y     ), sendMessage Rotate)
     , ((modm,                       xK_s     ), sendMessage Swap)
     , ((modm,                       xK_n     ), sendMessage FocusParent)
     , ((modm .|. ctrl,              xK_n     ), sendMessage SelectNode)
@@ -154,6 +161,7 @@ myKeys conf@XConfig {XMonad.modMask = modm} = M.fromList $
     -- scratchpads
     , ((modm,                xK_c        ), namedScratchpadAction scratchpads "calc")
     , ((modm,                xK_grave    ), namedScratchpadAction scratchpads "htop")
+    , ((modm,                xK_x        ), namedScratchpadAction scratchpads "obsidian")
     , ((modm,                xK_z        ), namedScratchpadAction scratchpads "zeal")
 
     , ((modm,                xK_v        ), runInTerm "" "alsamixer -c 0")

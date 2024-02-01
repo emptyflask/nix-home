@@ -12,6 +12,7 @@ import           XMonad.Util.NamedScratchpad
 scratchpads :: [NamedScratchpad]
 scratchpads = [ NS "calc" spawnCalc findCalc manageCalc
               , NS "htop" spawnHtop findHtop manageHtop
+              , NS "obsidian" spawnObsidian findObsidian manageObsidian
               , NS "zeal" spawnZeal findZeal manageZeal
               ]
     where
@@ -22,6 +23,10 @@ scratchpads = [ NS "calc" spawnCalc findCalc manageCalc
       spawnHtop  = Paths.kitty <> " --class=htop " <> Paths.htop
       findHtop   = className =? "htop"
       manageHtop = customFloating $ W.RationalRect (1/6) (1/6) (2/3) (2/3)
+
+      spawnObsidian  = Paths.obsidian
+      findObsidian   = className =? "obsidian"
+      manageObsidian = customFloating $ W.RationalRect (1/6) (1/12) (2/3) (5/6)
 
       spawnZeal  = Paths.zeal
       findZeal   = className =? "Zeal"
@@ -52,14 +57,14 @@ myManageHook = composeAll $
           ${1+"$@"}
       -}
 
-      myActions = [ ("MPlayer"                        , doFloat)
+      myActions = [ (".kazam-wrapped"                 , doFloat)
+                  , ("MPlayer"                        , doFloat)
                   , ("Oracle VM VirtualBox Manager"   , doShift "8")
                   , ("VirtualBox"                     , doShift "8")
                   , ("Wrapper-2.0"                    , doFloat)
                   , ("Xfce4-appfinder"                , doFloat)
                   , ("Xfce4-notifyd"                  , doIgnore)
                   , ("Xfrun4"                         , doFloat)
-                  , ("yad-calendar"                   , doFloat)
                   , ("animation-SpriteTestWindow"     , doFloat)
                   , ("animation-playbac"              , doFloat)
                   , ("file-jpeg"                      , doFloat)
@@ -70,13 +75,13 @@ myManageHook = composeAll $
                   , ("gimp-curves-tool"               , doFloat)
                   , ("gimp-desaturate-tool"           , doFloat)
                   , ("gimp-display-filters"           , doFloat)
-                  , ("gimp-dock"                      , (ask >>= doF . W.sink))
+                  , ("gimp-dock"                      , ask >>= doF . W.sink)
                   , ("gimp-file-open"                 , doFloat)
                   , ("gimp-file-open-location"        , doFloat)
                   , ("gimp-file-save"                 , doFloat)
                   , ("gimp-hue-saturation-tool"       , doFloat)
                   , ("gimp-image-new"                 , doFloat)
-                  , ("gimp-image-window"              , (ask >>= doF . W.sink))
+                  , ("gimp-image-window"              , ask >>= doF . W.sink)
                   , ("gimp-keyboard-shortcuts-dialog" , doFloat)
                   , ("gimp-layer-new"                 , doFloat)
                   , ("gimp-levels-tool"               , doFloat)
@@ -90,9 +95,10 @@ myManageHook = composeAll $
                   , ("gimp-shear-tool"                , doFloat)
                   , ("gimp-threshold-tool"            , doFloat)
                   , ("gimp-tip-of-the-day"            , doFloat)
-                  , ("gimp-toolbox"                   , (ask >>= doF . W.sink))
+                  , ("gimp-toolbox"                   , ask >>= doF . W.sink)
                   , ("gimp-toolbox-color-dialog"      , doFloat)
                   , ("gimp-vectors-edit"              , doFloat)
+                  , ("kazam"                          , doFloat)
                   , ("mpv"                            , doFloat)
                   , ("plugin-browser"                 , doFloat)
                   , ("preferences"                    , doFloat)
@@ -100,19 +106,14 @@ myManageHook = composeAll $
                   , ("rofi"                           , doIgnore)
                   , ("screenshot"                     , doFloat)
                   , ("unit-editor"                    , doFloat)
-                  , ("kazam"                          , doFloat)
-                  , (".kazam-wrapped"                 , doFloat)
+                  , ("yad-calendar"                   , doFloat)
+                  , ("zoom_linux_float_video_window"  , doIgnore)
                   ]
 
 -- Match a string against any one of a window's class, title, name or role.
 matchAny :: String -> Query Bool
-matchAny x = foldr ((<||>) . (=? x)) (return False) [className, title, wmName, role]
+matchAny x = foldr ((<||>) . (=? x)) (return False) [appName, className, title, role]
   where
-    -- Match against @WM_NAME@.
-    wmName :: Query String
-    wmName = stringProperty "WM_CLASS"
-
-    -- Match against @WM_WINDOW_ROLE@.
     role :: Query String
     role = stringProperty "WM_WINDOW_ROLE"
 
@@ -122,4 +123,4 @@ avoidMaster :: W.StackSet i l a s sd -> W.StackSet i l a s sd
 avoidMaster = W.modify' $ \c -> case c of
     -- W.Stack t [] (r:rs) -> W.Stack t [r] rs
     W.Stack t [] (r:rs) -> W.Stack r [] (t:rs)
-    _                   -> c
+    _other              -> c
