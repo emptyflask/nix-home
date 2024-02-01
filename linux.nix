@@ -55,7 +55,6 @@ with pkgs;
 
   home.packages = with pkgs; [
     cachix
-    postman
 
     # ghcide-nix.ghcide-ghc865
 
@@ -78,6 +77,7 @@ with pkgs;
     # libreoffice
     lxmenu-data         # installed apps
     pavucontrol
+    postman
     protonvpn-cli
     qalculate-gtk       # calculator
     qemu
