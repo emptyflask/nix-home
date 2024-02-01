@@ -1,10 +1,19 @@
 -- Setup nvim-cmp.
-local cmp = require'cmp'
+local cmp = require('cmp')
+local lspkind = require('lspkind')
 
 cmp.setup({
   -- view = {
   --   entries = "native"
   -- },
+  --
+  formatting = {
+    format = lspkind.cmp_format({
+      mode = "symbol",
+      max_width = 50,
+      symbol_map = { Copilot = "" }
+    })
+  },
 
   snippet = {
     -- REQUIRED - you must specify a snippet engine
@@ -31,7 +40,9 @@ cmp.setup({
     -- { name = 'ultisnips' }, -- For ultisnips users.
     -- { name = 'snippy' }, -- For snippy users.
   }, {
+    { name = "neorg" },
     { name = 'buffer' },
+    { name = "copilot" },
   })
 })
 

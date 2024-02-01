@@ -37,13 +37,13 @@ end
 -- Use a loop to conveniently call 'setup' on multiple servers and
 -- map buffer local keybindings when the language server attaches
 local servers = {
-  'dhall_lsp_server',
+  -- 'dhall_lsp_server',
   'hls',
   'pyright',
   'rescriptls',
   -- 'rust_analyzer',
   'solargraph',
-  'sumneko_lua',
+  'lua_ls',
   'tsserver'
 }
 
