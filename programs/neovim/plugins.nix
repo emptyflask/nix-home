@@ -57,21 +57,7 @@ let
 
     mini = { plugin = (pluginGit "main" "echasnovski/mini.nvim");
       type = "lua";
-      config = ''
-        require('mini.ai').setup()
-        require('mini.align').setup()
-        require('mini.bracketed').setup()
-        require('mini.comment').setup({
-          mappings = {
-            comment = "gc",
-            comment_line = "\\\\\\",
-            comment_visual = "\\\\",
-            textobject = "gc"
-          }
-        })
-        require('mini.move').setup()
-        require('mini.pairs').setup()
-      '';
+      config = builtins.readFile(./mini.lua);
     };
 
     nvim-cmp = { plugin = pkgs.vimPlugins.nvim-cmp;
